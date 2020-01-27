@@ -23,7 +23,7 @@ rt/api/2.0/interaction/offline?sk=SITE_KEY, NSErrorFailingURLKey=https://servern
 2020-01-20 09:33:28.312445+0100 SampleApp[27123:934708] [] nw_socket_connect [C906.4:3] connect failed (fd 13) [64: Host is down]
 ```
 
-These are **Apple error logs** logging *all* failed outgoing network connections configured with an external tool (i.e. Little Snitch) to block outgoing network calls in the Xcode Simulator. Below are a potential solutions to help filter the Apple error logs that you see: 
+These are **Apple error logs** logging *all* failed outgoing network connections configured with an external tool (i.e. Little Snitch) to block outgoing network calls in the Xcode Simulator. Below are potential solutions to help filter the Apple error logs that you see: 
 - Disable the OS (Operating System) Logs by setting `OS_ACTIVITY_MODE` = `disable` in your App Scheme Configuration. 
     - See [here](https://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-logs)
 - Or, if you require to see the OS logs and only want to filter Thunderhead SDK's network calls, you can temporarily set the SDK's `optOut` setting to `true`.  
