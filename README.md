@@ -25,7 +25,7 @@ rt/api/2.0/interaction/offline?sk=SITE_KEY, NSErrorFailingURLKey=https://servern
 
 These are **Apple error logs** logging *all* failed outgoing network connections configured with an external tool (i.e. Little Snitch) to block outgoing network calls in the Xcode Simulator. Below is a potential solution to help filter the Apple error logs that you see: 
 - Disable the OS (Operating System) Logs by setting `OS_ACTIVITY_MODE` = `disable` in your App Scheme Configuration. 
-	- See here: https://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-logs
+	- See [here!](https://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-logs)
 
 Or, if you require to see the OS logs and only want to filter Thunderhead SDK's network calls, you can temporarily set the SDK's `optOut` setting to `true`.  
-- https://github.com/thunderheadone/one-sdk-ios#opt-an-end-user-out-of-tracking
+- See [here!](https://github.com/thunderheadone/one-sdk-ios#opt-an-end-user-out-of-tracking)
