@@ -4,7 +4,7 @@ This example app demonstrates how to late initialize and dynamically reconfigure
 
 ## Late Initializing the ONE SDK
 
-In the event you want the SDK to run and not be linked to a particular site key or thinstance, you can initialize the SDK with all empty strings `""` or `nil` parameters.  The SDK can then be configured later with valid parameters using the same method.
+In the event you want the SDK to run even without valid parameters, you can initialize the SDK with all empty strings `""` or `nil` parameters.  The SDK can then be configured later with valid parameters using the same method.
 
 *Note:*
 - In this state, the SDK locally queues end-user data and will upload the data to server once SDK is initialized with valid parameters.
