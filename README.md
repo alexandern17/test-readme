@@ -32,9 +32,9 @@ Objective-C:
                hostName:@""];
 ```
 
-## Reconfiguring ONE SDK Parameters
+## Reconfiguring the ONE SDK
 
-In the case that the SDK is already initialized with valid credentials, the SDK can also be reconfigured later when necessary. This can be useful for certain situations.  For example, you may require to use different site keys or thinstances corresponding to the regions users are located in as the relocate.
+In the case that the SDK is already initialized with valid credentials, the SDK can also be reconfigured later when necessary. This can be useful for certain situations.  For example, you may require to use different site keys or thinstances corresponding to the regions your users are located in as they relocate.
 
 To reconfigure the SDK with different parameters, simply run `One.startSessionWithSK` again with the new parameters, as shown below:
 
