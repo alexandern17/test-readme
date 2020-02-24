@@ -1,14 +1,14 @@
-# Dynamic Initialization Example 
+# Late and Dynamic Initialization Example 
 
-This example app demonstrates how to reconfigure ONE SDK parameters on the fly.
+This example app demonstrates how to late initialize and dynamically reconfigure the ONE SDK on the fly.
 
-## Initializing the ONE SDK
+## Late Initializing the ONE SDK
 
-You can initialize the SDK with either all valid or empty/nil parameters.
-- When initialized with valid credentials, the SDK can be reconfigured later when deemed necessary.
-- When initialized by passing all `empty strings` or `nil` parameters (late initialization), the SDK can be then be configured with valid parameters later using the same method.
-	- Note: In this state, the SDK locally queues end-user data and will upload the data to server once SDK is initialized with valid parameters.
-
+In the event you want the SDK to continue to run and not be linked to a particular site key and thinstance, you can initialize the SDK with all empty strings `""` or nil parameters.  The SDK can then be configured later with valid parameters using the same method.
+*Note:*
+- In this state, the SDK locally queues end-user data and will upload the data to server once SDK is initialized with valid parameters.
+- The SDK does NOT support partial parameters, parameters passed must be either *all* valid or *all* `empty/nil`.
+	
 Swift:
 ```swift
 One.startSessionWithSK("",
@@ -31,11 +31,11 @@ Objective-C:
                hostName:@""];
 ```
 
-Note: SDK cannot initialize with partial parameters, all parameters need to exist and be valid.
-
 ## Reconfiguring ONE SDK Parameters
 
-To reconfigure the SDK with different site credentials, simply run `One.startSessionWithSK` again with the new parameters.
+In the case that the SDK is already initialized with valid credentials, the SDK can also be reconfigured later when necessary. This can be useful for certain situations.  For example, you may require to use different site keys or thinstances corresponding to the regions users are located in as the relocate.
+
+To reconfigure the SDK with different parameters, simply run `One.startSessionWithSK` again with the new parameters, as shown below:
 
 Swift:
 ```swift
