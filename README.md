@@ -8,7 +8,7 @@ In the event you want the SDK to run even without valid parameters, you can init
 
 *Note:*
 - In this state, the SDK locally queues end-user data and will upload the data to server once SDK is initialized with valid parameters.
-- The SDK does NOT support partial parameters, parameters passed must either be *all* valid or *all* `empty/nil`.
+- The SDK does not support partial parameters, parameters passed must either be *all* valid or *all* `empty/nil`.
     
 Swift:
 ```swift
@@ -34,7 +34,7 @@ Objective-C:
 
 ## Reconfiguring the Thunderhead SDK
 
-In the case that the SDK is already initialized with valid credentials, the SDK can also be reconfigured later when necessary. This can be useful for certain situations.  For example, you may require to use different site keys or thinstances corresponding to the regions your users are located in as they relocate.
+In the case that the SDK is already initialized with valid credentials, the SDK can also be reconfigured later when necessary. This can be useful for certain situations.  For example, you may require to use different site keys or hosts corresponding to the regions your users are located in as they relocate.
 
 To reconfigure the SDK with different parameters, simply run `One.startSessionWithSK` again with the new parameters, as shown below:
 
