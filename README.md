@@ -1,8 +1,8 @@
 # Late Initialization and Reconfiguration Example 
 
-This example app demonstrates how to late initialize and dynamically reconfigure the ONE SDK on the fly.
+This example app demonstrates how to late initialize and dynamically reconfigure the Thunderhead SDK on the fly.
 
-## ONE SDK Late Initialization
+## Thunderhead SDK Late Initialization
 
 In the event you want the SDK to run even without valid parameters, you can initialize the SDK with all empty strings `""` or `nil` parameters.  The SDK can then be configured later with valid parameters using the same method.
 
@@ -32,7 +32,7 @@ Objective-C:
                hostName:@""];
 ```
 
-## Reconfiguring the ONE SDK
+## Reconfiguring the Thunderhead SDK
 
 In the case that the SDK is already initialized with valid credentials, the SDK can also be reconfigured later when necessary. This can be useful for certain situations.  For example, you may require to use different site keys or thinstances corresponding to the regions your users are located in as they relocate.
 
@@ -70,7 +70,7 @@ Make sure you have the [CocoaPods](http://cocoapods.org) dependency manager inst
 $ gem install cocoapods
 ```
 
-In order to run the app, install the One SDK into the Example App using the following command:
+In order to run the app, install the Thunderhead SDK into the Example App using the following command:
 
 ```sh
 $ pod install
