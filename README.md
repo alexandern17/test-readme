@@ -8,7 +8,7 @@ In the event you want the SDK to run even without valid parameters, you can init
 
 *Note:*
 - In this state, the SDK locally queues end-user data and will upload the data to server once SDK is initialized with valid parameters.
-- The SDK does NOT support partial parameters, parameters passed must be either *all* valid or *all* `empty/nil`.
+- The SDK does NOT support partial parameters, parameters passed must either be *all* valid or *all* `empty/nil`.
     
 Swift:
 ```swift
@@ -70,7 +70,7 @@ Make sure you have the [CocoaPods](http://cocoapods.org) dependency manager inst
 $ gem install cocoapods
 ```
 
-Install the One SDK into the Example App using the following command:
+In order to run the app, install the One SDK into the Example App using the following command:
 
 ```sh
 $ pod install
