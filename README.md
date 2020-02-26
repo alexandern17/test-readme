@@ -1,5 +1,12 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
++ [Requirements](https://github.com/alexandern17/test-readme/blob/master/README.md#requirements)
++ [Installation](https://github.com/alexandern17/test-readme/blob/master/README.md#installation)
+	+ [CocoaPods](https://github.com/alexandern17/test-readme/blob/master/README.md#cocoapods)
+
+
+## Requirements
+
 The Thunderhead SDK for iOS supports iOS 8.0 and above.
 
 ### iOS Version Updates
