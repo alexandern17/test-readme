@@ -6,7 +6,7 @@ App Flow Summary:
 1. SDK initialized with no parameters (*late initialization*) in AppDelegate .
 2. On first view controller viewDidLoad (RegionViewController.swift), SDK is *reconfigured* with default parameters.
 3. 'Change' button presents ChangeRegionViewController.swift, which displays other regions to select.
-4. Upon new region selection, SDK is then *reconfigured* with new credentials corresponding to the region selected, triggered from the `onRegionChanged` delegate.   
+4. Upon new region selection, SDK is then *reconfigured* with new credentials corresponding to the region selected, triggered from the `onRegionChanged` delegate method.   
 
 ## Thunderhead SDK Late Initialization
 
