@@ -16,7 +16,28 @@
 	+ [View controller/view lifecycle overriding rules](https://github.com/alexandern17/test-readme/blob/master/README.md#view-controllerview-lifecycle-overriding-rules)
 + [Additional features](https://github.com/alexandern17/test-readme/blob/master/README.md#additional-features)
 	+ [Opt an end-user out of tracking](https://github.com/alexandern17/test-readme/blob/master/README.md#opt-an-end-user-out-of-tracking)
-	+ [Late initializing & reconfiguring the SDK]
+	+ [Late initializing & reconfiguring the SDK](https://github.com/alexandern17/test-readme/blob/master/README.md#late-initializating--reconfiguring-the-sdk)
+	+ [Manually set a specific Interaction path](https://github.com/alexandern17/test-readme/blob/master/README.md#manually-set-a-specific-interaction-path)
+	+ [Exclude an Interaction](https://github.com/alexandern17/test-readme/blob/master/README.md#exclude-an-interaction)
+	+ [Disable automatic Interaction detection](https://www.google.com)
+	+ [Send an Interaction request programmatically]()
+	+ [Send an Interaction request programmatically with a completion block](https://www.google.com)
+	+ [Retrieve a response for a UIViewController instance](https://www.google.com)
+	+ [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](https://www.google.com)
+		+ [Send properties to a base touchpoint](https://www.google.com)
+		+ [Send an Interaction request with properties](https://www.google.com)
+		+ [Send an Interaction request with properties and a completion block](https://www.google.com)
+		+ [Send properties to an Interaction](https://www.google.com)
+		+ [Send a response code](https://www.google.com)
+	+ [Identity sync](https://www.google.com)
+		+ [Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint](https://www.google.com)
+	+ [Ability to whitelist identity transfer links](https://www.google.com)
+	+ [Ability to blacklist identity transfer links](https://www.google.com)
+	+ [Disable automatic identity transfer](https://www.google.com)
+	+ [](https://www.google.com)		
+	+ [](https://www.google.com)
+	+ [](https://www.google.com)
+
 
 
 ## Requirements
