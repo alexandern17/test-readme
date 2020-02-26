@@ -1,8 +1,5 @@
 # Optimizing Programatically Using JSON Example 
 
-
-```
-
 ## Installation
 
 ### CocoaPods
