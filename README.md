@@ -1,8 +1,22 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
+## Table of Contents
+
 + [Requirements](https://github.com/alexandern17/test-readme/blob/master/README.md#requirements)
 + [Installation](https://github.com/alexandern17/test-readme/blob/master/README.md#installation)
 	+ [CocoaPods](https://github.com/alexandern17/test-readme/blob/master/README.md#cocoapods)
+	+ [Manual Installation](https://github.com/alexandern17/test-readme/blob/master/README.md#manual-installation)
+	+ [Adding the SDK dependences for manual installation](https://github.com/alexandern17/test-readme/blob/master/README.md#adding-the-sdk-dependencies-for-manual-installation)
+	+ [Biometric Authentication](https://github.com/alexandern17/test-readme/blob/master/README.md#biometric-authentication)
++ [Use the Codeless Thunderhead SDK for iOS](https://github.com/alexandern17/test-readme/blob/master/README.md#use-the-codeless-thunderhead-sdk-for-ios)
+	+ [Import the SDK's Module](https://github.com/alexandern17/test-readme/blob/master/README.md#import-the-sdks-module)
+	+ [Set up the Framework in User mode](https://github.com/alexandern17/test-readme/blob/master/README.md#set-up-the-framework-in-user-mode)
+	+ [Set up the Framework in Admin mode](https://github.com/alexandern17/test-readme/blob/master/README.md#set-up-the-framework-in-admin-mode)
+	+ [For Salesforce Interaction Studio integrations](https://github.com/alexandern17/test-readme/blob/master/README.md#for-salesforce-interaction-studio-integrations)
+	+ [View controller/view lifecycle overriding rules](https://github.com/alexandern17/test-readme/blob/master/README.md#view-controllerview-lifecycle-overriding-rules)
++ [Additional features](https://github.com/alexandern17/test-readme/blob/master/README.md#additional-features)
+	+ [Opt an end-user out of tracking](https://github.com/alexandern17/test-readme/blob/master/README.md#opt-an-end-user-out-of-tracking)
+	+ [Late initializing & reconfiguring the SDK]
 
 
 ## Requirements
@@ -215,7 +229,7 @@ Objective-C:
 - At any point you can opt a user back in by passing `false` into the same method.
 - For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-### Late Initialization
+### Late initializating & reconfiguring the SDK
 
 Need to late initialize or reconfigure the SDK to support multiple regions in your app? - see details [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
 
