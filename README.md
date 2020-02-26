@@ -19,41 +19,38 @@
 	+ [Late initializing & reconfiguring the SDK](https://github.com/alexandern17/test-readme/blob/master/README.md#late-initializating--reconfiguring-the-sdk)
 	+ [Manually set a specific Interaction path](https://github.com/alexandern17/test-readme/blob/master/README.md#manually-set-a-specific-interaction-path)
 	+ [Exclude an Interaction](https://github.com/alexandern17/test-readme/blob/master/README.md#exclude-an-interaction)
-	+ [Disable automatic Interaction detection](https://github.com/alexandern17/test-readme/blob/master/README.md#disable-automatic-interaction-detection)
-	+ [Send an Interaction request programmatically](https://github.com/alexandern17/test-readme/blob/master/README.md#send-an-interaction-request-programmatically)
-	+ [Send an Interaction request programmatically with a completion block](https://github.com/alexandern17/test-readme/blob/master/README.md#send-an-interaction-request-programmatically-with-a-completion-block)
-	+ [Retrieve a response for a UIViewController instance](https://github.com/alexandern17/test-readme/blob/master/README.md#retrieve-a-response-for-a-uiviewcontroller-instance)
-		+ [Retrieve a response for other instances](https://github.com/alexandern17/test-readme/blob/master/README.md#retrieve-a-response-for-other-instances)
-	+ [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](https://github.com/alexandern17/test-readme/blob/master/README.md#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
-		+ [Send properties to a base touchpoint](https://github.com/alexandern17/test-readme/blob/master/README.md#send-properties-to-a-base-touchpoint)
-		+ [Send an Interaction request with properties](https://github.com/alexandern17/test-readme/blob/master/README.md#send-an-interaction-request-with-properties)
-		+ [Send an Interaction request with properties and a completion block](https://github.com/alexandern17/test-readme/blob/master/README.md#send-an-interaction-request-with-properties-and-a-completion-block)
-		+ [Send properties to an Interaction](https://github.com/alexandern17/test-readme/blob/master/README.md#send-properties-to-an-interaction)
-		+ [Send a response code](https://github.com/alexandern17/test-readme/blob/master/README.md#send-a-response-code)
-	+ [Identity sync](https://github.com/alexandern17/test-readme/blob/master/README.md#identity-sync)
-		+ [Identity sync with Thunderhead ONE or Salesforce Interaction Studio](https://github.com/alexandern17/test-readme/blob/master/README.md#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio)
-		+ [Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint](https://github.com/alexandern17/test-readme/blob/master/README.md#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio-and-your-web-touchpoint)
-	+ [Ability to whitelist identity transfer links](https://github.com/alexandern17/test-readme/blob/master/README.md#ability-to-whitelist-identity-transfer-links)
-	+ [Ability to blacklist identity transfer links](https://github.com/alexandern17/test-readme/blob/master/README.md#ability-to-blacklist-identity-transfer-links)
-	+ [Disable automatic identity transfer](https://github.com/alexandern17/test-readme/blob/master/README.md#disable-automatic-identity-transfer)
-		+ [Send properties for a URL scheme](https://github.com/alexandern17/test-readme/blob/master/README.md#send-properties-for-a-url-scheme)
-		+ [Append a ‘one-tid’ parameter to a NSURL to facilitate identity transfer](https://github.com/alexandern17/test-readme/blob/master/README.md#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
-	+ [Disable automatic outbound link tracking](https://github.com/alexandern17/test-readme/blob/master/README.md#disable-automatic-outbound-link-tracking)
-		+ [Programmatically trigger an outbound link tracking Interaction call](https://github.com/alexandern17/test-readme/blob/master/README.md#programmatically-trigger-an-outbound-link-tracking-interaction-call)
-	+ [Enable push notifications](https://github.com/alexandern17/test-readme/blob/master/README.md#enable-push-notifications)
-		+ [Get a push token](https://github.com/alexandern17/test-readme/blob/master/README.md#get-a-push-token)
-		+ [Send a push token](https://github.com/alexandern17/test-readme/blob/master/README.md#send-a-push-token)
-	+ [Handle notifications received through the ONE APNs interface](https://github.com/alexandern17/test-readme/blob/master/README.md#handle-notifications-received-through-the-one-apns-interface)
-		+ [Handling notifications while the app in foreground or background](https://github.com/alexandern17/test-readme/blob/master/README.md#displaying-notifications-while-the-app-in-foreground)
-		+ [Displaying notifications while the app in foreground](https://github.com/alexandern17/test-readme/blob/master/README.md#displaying-notifications-while-the-app-in-foreground)
-	+ [Send a location object](https://github.com/alexandern17/test-readme/blob/master/README.md#send-a-location-object)
-	+ [Get a structure data](https://github.com/alexandern17/test-readme/blob/master/README.md#get-a-structure-data)
-	+ [Get Tid](https://github.com/alexandern17/test-readme/blob/master/README.md#get-tid)
-	+ [Access Debug Information](https://github.com/alexandern17/test-readme/blob/master/README.md#access-debug-information)
-	+ [Identify the framework version](https://github.com/alexandern17/test-readme/blob/master/README.md#identify-the-framework-version)
-	+ [Clear the user profile](https://github.com/alexandern17/test-readme/blob/master/README.md#clear-the-user-profile)
-+ [Troubleshooting Guide](https://github.com/alexandern17/test-readme/blob/master/README.md#troubleshooting-guide)
-+ [Questions or need help](https://github.com/alexandern17/test-readme/blob/master/README.md#questions-or-need-help)
+	+ [Disable automatic Interaction detection]()
+	+ [Send an Interaction request programmatically]()
+	+ [Send an Interaction request programmatically with a completion block]()
+	+ [Retrieve a response for a UIViewController instance]()
+	+ [Send Properties to Thunderhead ONE or Salesforce Interaction Studio]()
+		+ [Send properties to a base touchpoint]()
+		+ [Send an Interaction request with properties]()
+		+ [Send an Interaction request with properties and a completion block]()
+		+ [Send properties to an Interaction]()
+		+ [Send a response code]()
+	+ [Identity sync]()
+		+ [Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint]()
+	+ [Ability to whitelist identity transfer links]()
+	+ [Ability to blacklist identity transfer links]()
+	+ [Disable automatic identity transfer]()
+		+ [Send properties for a URL scheme]()		
+		+ [Append a ‘one-tid’ parameter to a NSURL to facilitate identity transfer]()
+	+ [Disable automatic outbound link tracking]()
+		+ [Programmatically trigger an outbound link tracking Interaction call]()
+	+ [Enable push notifications]()
+		+ [Get a push token]()
+		+ [Send a push token]()
+	+ []()
+	+ []()
+	+ []()
+	+ []()
+	+ []()
+	+ []()
+	+ []()
+	+ []()
+	+ []()
+
 
 
 ## Requirements
@@ -952,7 +949,7 @@ To receive push notifications from Thunderhead ONE or Salesforce Interaction Stu
 *Note:*
 - To disable this feature if it once was enabled, simply call the same method and pass `false`.   
 
-### Get a push token
+#### Get a push token
 
 To get the push token codelessly retrieved by the SDK, call the `getPushToken` method as shown below:
 
@@ -972,7 +969,7 @@ NSString *pushToken = [One getPushToken];
 *Note:*
 - This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider.
 
-### Send a push token
+#### Send a push token
 
 To send a push token, call `sendPushToken` method by passing a push token:
 
