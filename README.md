@@ -18,7 +18,7 @@
     + [View controller/view lifecycle overriding rules](#view-controller-view-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
-  * [Late initialization & reconfiguration of the SDK](#late-initialization-&-reconfiguration-of-the-sdk)
+  * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
@@ -270,7 +270,7 @@ Objective-C:
 - At any point you can opt a user back in by passing `false` into the same method.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-### Late initialization & reconfiguration of the SDK
+### Late initialization and reconfiguration of the SDK
 
 Need to late initialize or reconfigure the SDK to support multiple regions in your app? - see details [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
 
