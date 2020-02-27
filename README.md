@@ -1253,4 +1253,4 @@ Objective-C:
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
 ### Thunderhead ONE Support
-_The Thunderhead team is available 24/7 to answer any questions you have. Just email mailto:onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
+_The Thunderhead team is available 24/7 to answer any questions you have. Just email [mailto](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._
