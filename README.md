@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [Requirements](#requirements)
-  * [iOS Version Updates](#ios-version-updates)
+  * [iOS Version Requirements](#ios-version-requirements)
 - [Installation](#installation)
   * [CocoaPods](#cocoapods)
   * [Manual Installation](#manual-installation)
@@ -18,7 +18,7 @@
     + [View controller/view lifecycle overriding rules](#view-controller-view-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
-  * [Late initialization & reconfiguration of the SDK](#late-initialization---reconfiguration-of-the-sdk)
+  * [Late initialization & reconfiguration of the SDK](#late-initialization-&-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
@@ -49,7 +49,6 @@
   * [Handle notifications received through the ONE APNs interface](#handle-notifications-received-through-the-one-apns-interface)
       - [Handling notifications while the app in foreground or background](#handling-notifications-while-the-app-in-foreground-or-background)
       - [Displaying notifications while the app in foreground](#displaying-notifications-while-the-app-in-foreground)
-        * [iOS 10+](#ios-10-)
   * [Send a location object](#send-a-location-object)
   * [Get a structure data](#get-a-structure-data)
   * [Get Tid](#get-tid)
@@ -65,7 +64,7 @@
 
 The Thunderhead SDK for iOS supports iOS 8.0 and above.
 
-### iOS Version Updates
+### iOS Version Requirements
 
 + iOS minimum version (deployment target): iOS 8.0
 + iOS base SDK version: iOS 13.0
@@ -1050,7 +1049,7 @@ Notifications received while the app is running in the foreground will not gener
 
 For example, to show a standard alert view, do the following:
 
-###### iOS 10+
+**iOS 10+**
 
 Swift:
 ```swift
