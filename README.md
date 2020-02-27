@@ -268,7 +268,7 @@ Objective-C:
 ```
 *Note:*
 - When opted out, tracking will stop and locally queued data will be removed.
-- At any point you can opt an user back in by passing `false` into the same method.
+- At any point you can opt a user back in by passing `false` into the same method.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Late initialization & reconfiguration of the SDK
@@ -1253,4 +1253,4 @@ Objective-C:
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
 ### Thunderhead ONE Support
-_The Thunderhead team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
+_The Thunderhead team is available 24/7 to answer any questions you have. Just email mailto:onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
