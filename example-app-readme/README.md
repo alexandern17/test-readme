@@ -7,7 +7,8 @@ App Flow Summary:
 2. On initial app start, [RegionViewController.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/RegionViewController.swift) is presented with no region selected/configured.  
 3. The 'SELECT' button presents [ChangeRegionViewController.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/ChangeRegionViewController.swift), which displays a list of regions to select from.
 4. Upon selection of a new region, the SDK is then *reconfigured* with new API credentials corresponding to the region selected, triggered from the [`onRegionChanged`](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/RegionViewController.swift#L93) delegate method.  
-- Note: For simplicity, the API credentials are stored in `NSUserDefaults` in the example app.  We recommend using secure methods, like `Keychain`, to store credentials as it is sensitive data.
+
+*Note:* For simplicity, the API credentials are stored in `NSUserDefaults` in the example app.  We recommend using secure methods, like `Keychain`, to store credentials as it is sensitive data.
 
 ## Thunderhead SDK Late Initialization
 
