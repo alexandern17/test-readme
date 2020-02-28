@@ -9,7 +9,7 @@ App Flow Summary:
 4. Upon selection of a new region, the SDK is then *reconfigured* with new API credentials corresponding to the region selected, triggered from the [`onRegionChanged`](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/RegionViewController.swift#L93) delegate method.  
 
 *Note:*
-- The Thunderhead SDK's AdminMode is not reconfigurable on the fly, the app needs to be restarted when switching between User and Admin mode.
+- The SDK's `adminMode` parameter is not reconfigurable on the fly, the app needs to be restarted when switching between User and Admin mode.
 
 ## Thunderhead SDK Late Initialization
 
