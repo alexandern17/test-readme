@@ -3,10 +3,10 @@
 This example app demonstrates how to late initialize and dynamically reconfigure the Thunderhead SDK on the fly.
 
 App Flow Summary:
-1. The SDK is initialized with no parameters (*late initialization*) in AppDelegate .
-2. On first view controller `viewDidLoad` [RegionViewController.swift]( https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/RegionViewController.swift), the SDK is *reconfigured* with default parameters.
-3. 'Change' button presents [ChangeRegionViewController.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/ChangeRegionViewController.swift), which displays other regions to select.
-4. Upon new region selection, the SDK is then *reconfigured* with new credentials corresponding to the region selected, triggered from the `onRegionChanged` delegate method.   
+1. The SDK is initialized with no parameters (*late initialization*) in [AppDelegate.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/AppDelegate.swift#L46)'s `didFinishLaunchingWithOptions`.
+2. On initial app start, [RegionViewController.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/RegionViewController.swift) is presented with no region selected.  
+3. 'SELECT' button presents [ChangeRegionViewController.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/ChangeRegionViewController.swift), which displays a list of regions to select from.
+4. Upon selection of a new region, the SDK is then *reconfigured* with new API credentials corresponding to the region selected, triggered from the [`onRegionChanged`](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/RegionViewController.swift#L93) delegate method.  
 
 ## Thunderhead SDK Late Initialization
 
