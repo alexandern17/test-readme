@@ -6,9 +6,6 @@
 
 This example app integrates the Thunderhead SDK using [manual installation](https://github.com/thunderheadone/one-sdk-ios#manual-installation).  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods) 
 
-*Note:*
-- If the `Thunderhead.embeddedframework` is not located in the root folder, i.e. ${SRCROOT}, 
-
 ## Questions or need help
 
 ### Salesforce Interaction Studio Support
