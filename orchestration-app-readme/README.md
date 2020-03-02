@@ -1,8 +1,13 @@
 # Optimizing Programatically Using JSON Example 
 
+[![Nevercode build status](https://app.nevercode.io/api/projects/4714447b-05e5-45ff-921e-ea60c07e6ef2/workflows/b09232cf-8cac-453c-b9db-b08c7d96428e/status_badge.svg?branch=master&style=shields)](https://app.nevercode.io/#/project/4714447b-05e5-45ff-921e-ea60c07e6ef2/workflow/b09232cf-8cac-453c-b9db-b08c7d96428e/latestBuild?branch=master)
+
 ## Installation
 
-This example app integrates the Thunderhead SDK manually.  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods) 
+This example app integrates the Thunderhead SDK using [manual installation](https://github.com/thunderheadone/one-sdk-ios#manual-installation).  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods) 
+
+*Note:*
+- If the `Thunderhead.embeddedframework` is not located in the root folder, i.e. ${SRCROOT}, 
 
 ## Questions or need help
 
