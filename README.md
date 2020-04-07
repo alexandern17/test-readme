@@ -2,258 +2,338 @@
 
 ## Table of Contents
 
-- [Requirements](#requirements)
-  * [iOS Version Requirements](#ios-version-requirements)
 - [Installation](#installation)
-  * [CocoaPods](#cocoapods)
-  * [Manual Installation](#manual-installation)
-    + [Adding the SDK dependencies for manual installation](#adding-the-sdk-dependencies-for-manual-installation)
-    + [Biometric Authentication](#biometric-authentication)
-- [Use the Codeless Thunderhead SDK for iOS](#use-the-codeless-thunderhead-sdk-for-ios)
+  * [Manual installation](#manual-installation)
+    + [`build.gradle` examples](#-buildgradle--examples)
+      - [**Thunderhead ONE** `build.gradle` examples:](#--thunderhead-one----buildgradle--examples-)
+        * [Example of the **top-level** `build.gradle` file after integration:](#example-of-the---top-level----buildgradle--file-after-integration-)
+        * [Example of the **app-level** `build.gradle` file after integration:](#example-of-the---app-level----buildgradle--file-after-integration-)
+      - [**Salesforce Interaction Studio** `build.gradle` examples:](#--salesforce-interaction-studio----buildgradle--examples-)
+        * [Example of the **top-level** `build.gradle` file after integration:](#example-of-the---top-level----buildgradle--file-after-integration--1)
+        * [Example of the **app-level** `build.gradle` file after integration:](#example-of-the---app-level----buildgradle--file-after-integration--1)
+- [Use the Codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
+  * [The Thunderhead Application Manifest File Permissions:](#the-thunderhead-application-manifest-file-permissions-)
+  * [Subclass your `Application` Class](#subclass-your--application--class)
   * [Initialize the SDK](#initialize-the-sdk)
-    + [Import the SDK’s module](#import-the-sdks-module)
     + [Set up the Framework in User mode](#set-up-the-framework-in-user-mode)
     + [Set up the Framework in Admin mode](#set-up-the-framework-in-admin-mode)
-    + [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
-    + [View controller/view lifecycle overriding rules](#view-controllerview-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
-  * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
-  * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
   * [Send an Interaction request programmatically](#send-an-interaction-request-programmatically)
-  * [Send an Interaction request programmatically with a completion block](#send-an-interaction-request-programmatically-with-a-completion-block)
-  * [Retrieve a response for a UIViewController instance](#retrieve-a-response-for-a-uiviewcontroller-instance)
-    + [Retrieve a response for a UIViewController instance](#retrieve-a-response-for-a-uiviewcontroller-instance-1)
-    + [Retrieve a response for other instances](#retrieve-a-response-for-other-instances)
+  * [Send an Interaction request programmatically](#send-an-interaction-request-programmatically-1)
+  * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
+  * [Explicitly define a View as an Interaction](#explicitly-define-a-view-as-an-interaction)
   * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
-    + [Send properties to a base touchpoint](#send-properties-to-a-base-touchpoint)
+    + [Send properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
+    + [Send Properties to an Interaction](#send-properties-to-an-interaction)
     + [Send an Interaction request with properties](#send-an-interaction-request-with-properties)
-    + [Send an Interaction request with properties and a completion block](#send-an-interaction-request-with-properties-and-a-completion-block)
-    + [Send properties to an Interaction](#send-properties-to-an-interaction)
+    + [Send an Interaction Request with properties and a callback](#send-an-interaction-request-with-properties-and-a-callback)
     + [Send a response code](#send-a-response-code)
-  * [Identity sync](#identity-sync)
-    + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio)
-    + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio-and-your-web-touchpoint)
   * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
   * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
   * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
     + [Send properties for a URL scheme](#send-properties-for-a-url-scheme)
-    + [Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
+    + [Append a ‘one-tid’ parameter to a `URL` to facilitate identity transfer](#append-a--one-tid--parameter-to-a--url--to-facilitate-identity-transfer)
+    + [Append a ‘one-tid’ parameter to a `Uri` to facilitate identity transfer](#append-a--one-tid--parameter-to-a--uri--to-facilitate-identity-transfer)
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
   * [Enable push notifications](#enable-push-notifications)
+    + [Minimum Gradle Configuration](#minimum-gradle-configuration)
+    + [Enable codeless push notification support programmatically](#enable-codeless-push-notification-support-programmatically)
+      - [Configure Push Notifications With Multiple Push Message SDKs](#configure-push-notifications-with-multiple-push-message-sdks)
+      - [Set a non adaptive fallback.](#set-a-non-adaptive-fallback)
   * [Get a push token](#get-a-push-token)
   * [Send a push token](#send-a-push-token)
-  * [Handle notifications received through the ONE APNs interface](#handle-notifications-received-through-the-one-apns-interface)
-      - [Handling notifications while the app in foreground or background](#handling-notifications-while-the-app-in-foreground-or-background)
-      - [Displaying notifications while the app in foreground](#displaying-notifications-while-the-app-in-foreground)
   * [Send a location object](#send-a-location-object)
-  * [Get a structure data](#get-a-structure-data)
   * [Get Tid](#get-tid)
   * [Access Debug Information](#access-debug-information)
   * [Identify the framework version](#identify-the-framework-version)
   * [Clear the user profile](#clear-the-user-profile)
+- [Further integration details](#further-integration-details)
+  * [How to disable the codeless identity transfer support](#how-to-disable-the-codeless-identity-transfer-support)
 - [Troubleshooting Guide](#troubleshooting-guide)
 - [Questions or need help](#questions-or-need-help)
   * [Salesforce Interaction Studio Support](#salesforce-interaction-studio-support)
   * [Thunderhead ONE Support](#thunderhead-one-support)
 
-## Requirements
 
-The Thunderhead SDK for iOS supports iOS 8.0 and above.
+The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
 
-### iOS Version Requirements
+**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
+for details on updating the required Gradle plugins.**
 
-+ iOS minimum version (deployment target): iOS 8.0
-+ iOS base SDK version: iOS 13.0
-+ Xcode minimum version: 11.0
-
-*Note:*
-- Xcode 11+ only supports archiving an application with bitcode enabled.
+**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java8 Migration guide](JAVA8-MIGRATION-GUIDE.md) for details
+on updating your app to be Java8 compatible in order to use the Thunderhead SDK.**
 
 ## Installation
 
-### CocoaPods
+### Manual installation
+Requires Gradle 5.2.1+
+1. Open your existing Android application in Android Studio.
+2. Include the Thunderhead SDK as a dependency into your project:
 
-Make sure you have the [CocoaPods](http://cocoapods.org) dependency manager installed. You can do so by executing the following command:
++ Navigate to your **app-level** build.gradle file.
++ Add the following, under the dependencies section:
+	+ For **Thunderhead ONE** integrations:
+	
+	```gradle
+	dependencies {     
+	  implementation "com.thunderhead.android:one-sdk:5.0.0"
+	}
+	```
+	
+	+ For **Salesforce Interaction Studio** integrations:
+	
+	```gradle
+	dependencies {     
+	  implementation "com.thunderhead.android:is-sdk:5.0.0"
+	}
+	```
+	
+3. Add the Thunderhead SDK configuration within the same **app-level** `build.gradle` file. 
++ Add `RenderScript` support under the `defaultConfig` section:
+```gradle
+defaultConfig {
+   renderscriptTargetApi 22
+   renderscriptSupportModeEnabled true
+}
+```
++ Add the following, under the repositories section:
+``` gradle 
+repositories {
+  maven {
+   url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+  }
+}
+```
++ Append the following configuration, for **Thunderhead ONE** and **Salesforce Interaction Studio** integrations: 
+``` gradle 
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
+```
+		
+4. Add Java8 Support
 
-```sh
-$ gem install cocoapods
++ Add the following, under the `android` section
+```groovy
+compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+}
 ```
 
-Specify the *Thunderhead SDK* in your podfile
+5. Update your `build.gradle` to add codeless identity transfer support.
++ Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
+``` gradle 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            name 'Thunderhead'
+            url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
+    }
+}
+```
+####  `build.gradle` examples
 
-```txt
-# Thunderhead SDK
-    target :YourTargetName do
-    pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '5.0.0'
-    end
+#####  **Thunderhead ONE** `build.gradle` examples:
+
+###### Example of the **top-level** `build.gradle` file after integration:
+``` gradle
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            name 'Thunderhead'
+            url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+}
 ```
 
-Install using the following command:
+###### Example of the **app-level** `build.gradle` file after integration:
+``` gradle
+apply plugin: 'com.android.application'
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
-```sh
-$ pod install
-```
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.0'
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 
-See example project for pod installation [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example)
+    defaultConfig {
+        applicationId "com.thunderhead.android.demo"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
 
-### Manual Installation
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
+    }
+}
 
-1. [Download the latest Thunderhead SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases) and extract the zip.
-2. Open your existing iOS application Xcode project.
-3. Import the Thunderhead.embeddedframework into your project.
-4. Confirm the SDK files have been added to your project, as follows:
-	+ Navigate to your project build settings by selecting your project's Project File in the Project Navigator.
-	+ Select the main build target for your app.
-	+ Select the **Build Phases** tab.
-	+ Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
-	+ Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
-5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
+dependencies {     
+	implementation "com.thunderhead.android:one-sdk:5.0.0"
+}
 
-See example project for manual installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/optimizing-programmatically-using-json-example)
-
-*Note:*
-- If you encounter the `No such module 'Thunderhead'` compile error, in **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to $(SRCROOT) and set it to recursive.
-
-#### Adding the SDK dependencies for manual installation
-
-The SDK requires modules to be enabled. If you require modules to be disabled, you may need to include the following frameworks to the **Link Binary With Libraries**:
-
-+ *Foundation.framework*
-+ *UIKit.framework*
-+ *CoreGraphics.framework*
-+ *SystemConfiguration.framework*
-+ *MessageUI.framework*
-+ *Accelerate.framework*
-+ *LocalAuthentication.framework*
-+ *SafariServices.framework*
-+ *WebKit.framework*
-
-*Note:*
-- If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
-
-#### Biometric Authentication
-
-The SDK supports biometric authentication (Touch ID / Face ID) in Admin mode
-
-*Note:*
-- To use Face ID authentication, you need to add:
+repositories {
+    maven {
+       url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+    }
+}
 
 ```
-<key>NSFaceIDUsageDescription</key>
-<string>Why is my app authenticating using face id?</string>
+
+#####  **Salesforce Interaction Studio** `build.gradle` examples:
+
+###### Example of the **top-level** `build.gradle` file after integration:
+``` gradle
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            name 'Thunderhead'
+            url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+}
 ```
 
-to your `Info.plist` file. Failure to do so results in a dialog that tells the user your app has not provided the Face ID usage description.
+###### Example of the **app-level** `build.gradle` file after integration:
+``` gradle
+apply plugin: 'com.android.application'
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
 
-## Use the Codeless Thunderhead SDK for iOS
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.0'
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    defaultConfig {
+        applicationId "com.thunderhead.android.demo"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
 
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
+    }
+}
+
+dependencies {     
+	implementation "com.thunderhead.android:is-sdk:5.0.0"
+}
+
+repositories {
+    maven {
+       url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+    }
+}
+
+```
+
+For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md).
+
+## Use the Codeless Thunderhead SDK for Android
 Enable your app to automatically recognize **Interactions** by executing the following steps.
 
+* Developer note: Android Studio `Instant Run` is not supported at this time and must be disabled.
+
+### The Thunderhead Application Manifest File Permissions:
+Included in the Thunderhead SDK's AndroidManifest.xml are the following permissions which will be merged with your applications AndroidManifest.xml:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+```
+*Note:* 
+- The `SYSTEM_ALERT_WINDOW` permission is only needed for Admin mode builds. In your setup you can add this as a flavor specific permission to avoid having to show this as a permission change to your Play Store users.
+- You can remove this permission in User mode builds by adding the following to your manifest: 
+    ```xml 
+        <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
+    ```
+
+### Subclass your `Application` Class
+If you haven’t done so already, you will need to subclass your `Application` class in order to be able to initialize the SDK. If you are just creating an `Application` subclass please remember to define it in your app manifest.
+
 ### Initialize the SDK
-
-Complete the following steps to initialize the SDK.
-
-#### Import the SDK’s module
-1.	Open your App Delegate file.
-2.	Add the following line at the top of the file below your own import statements:
-
-	Swift:
-	```swift
-	import Thunderhead
-	```
-
-	Objective-C:
-	```objective-c
-	@import Thunderhead;
-	```
-
 #### Set up the Framework in User mode
-
 To start tracking, capturing, and receiving optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
-With your parameters ready at hand, add the following lines to the top of the `didFinishLaunchingWithOptions`:
+With your parameters ready at hand, add the following lines of code under the Application’s subclass onCreate() method. You must ensure the initialization method is added after super.onCreate() is called.
 
-Swift:
-```swift
-One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
-	uri:"myAppsNameURI",
-	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-	userId:"api@yourCompanyName",
-	adminMode:false,
-	hostName:"eu2.thunderhead.com")
+``` java 
+public class YourApplication extends Application {
+  
+  private static final String siteKey = "ONE-XXXXXXXXXX-1022";
+  private static final String touchpointURI = "myAppsNameURI";
+  private static final String apiKey = "f713d44a-8af0-4e79-ba7e-xxxxxxxxx";
+  private static final String sharedSecret = "bb8bacb2-ffc2-4c52-aaf4-xxx";
+  private static final String userId = "yourUsername@yourCompanyName";
+  private static final String hostName = "https://xx.thunderhead.com";
+  
+    @Override
+    public void onCreate() {
+      super.onCreate();
+      
+      One one = One.getInstance(getApplicationContext());
+      one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.USER_MODE, hostName);
+      
+    }
+}
 ```
-
-
-Objective-C:
-```objective-c
-[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-	            uri:@"myAppsNameURI"
-	         apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-	         userId:@"api@yourCompanyName"
-              adminMode:NO
-               hostName:@"eu2.thunderhead.com"];
-```
+*Note:* The User mode SDK build should be setup as part of your release build that is going to be uploaded to the Play Store.
 
 #### Set up the Framework in Admin mode
-
-To use the framework in Admin mode, simply change the `adminMode` boolean to `true`, as follows:
-
-Swift:
-```swift
-One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
-	uri:"myAppsNameURI",
-	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-	userId:"api@yourCompanyName",
-	adminMode:true,
-	hostName:"eu2.thunderhead.com")
+To use the framework in Admin mode, change the ONE mode to `ADMIN_MODE`, as follows:
+``` java 
+one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.ADMIN_MODE, hostName);
 ```
+*Note:* 
+- If you are running in Admin mode on Android 6.0+, you will need to enable the “draw over other apps” permission via your OS settings. 
+- If you have added both User and Admin mode support under the same app build, please note that the app will need to be terminated and restarted when switching from one mode to the other.
 
-
-Objective-C:
-```objective-c
-[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-		    uri:@"myAppsNameURI"
-		 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-	   sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-		 userId:@"api@yourCompanyName"
-	      adminMode:YES
-	       hostName:@"eu2.thunderhead.com"];
-```
-#### For Salesforce Interaction Studio integrations
-
-When integrating with Salesforce Interaction Studio you can set the Admin mode theme to match the Interaction Studio look and feel, as follows:
-
-Swift:
-```swift
-One.setTheme(OneTheme.InteractionStudio)
-```
-
-
-Objective-C:
-```objective-c
- [One setTheme:OneThemeInteractionStudio];
-```
-*Note:*
-- By default the SDK will be launched using the Thunderhead ONE theme. You should only use the Interaction Studio theme if you are a Salesforce customer.
-
-#### View controller/view lifecycle overriding rules
-
-The framework listens to a number of UIViewController and UIView methods to provide the desired functionality. Those methods are:
-- `viewWillAppear`
-- `viewDidAppear`
-- `viewWillDisappear`
-- `didMoveToWindow`
-
-If you use these methods in your code, please ensure to call super when implementing them.
-
-**You have now successfully integrated the codeless Thunderhead SDK for iOS.**
+**You have now successfully integrated the codeless Thunderhead SDK for Android.**
 
 ## Additional features
 Follow any of the steps below to access further functions of the SDK.
@@ -261,996 +341,619 @@ Follow any of the steps below to access further functions of the SDK.
 ### Opt an end-user out of tracking
 To opt an end-user out of tracking when the end-user does not give permission to be tracked in the client app, call the opt out method as shown below:
 
-Swift:
-```swift
-One.opt(out: true)
+```java
+One one = One.getInstance(getApplicationContext());
+one.optOut(true);
 ```
-
-
-Objective-C:
-```objective-c
-[One optOut:YES];
-```
-*Note:*
+*Note:* 
 - When opted out, tracking will stop and locally queued data will be removed.
-- At any point you can opt a user back in by passing `false` into the same method.
-- For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
-
-### Late initialization and reconfiguration of the SDK
-
-Need to late initialize or reconfigure the SDK to support multiple regions in your app? - see details [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
-
-### Manually set a specific Interaction path
-
-The SDK automatically assigns an Interaction path to each view controller. To override the Interaction path that is created automatically, call your view controller and pass your desired Interaction path as a string to the view controller’s `oneInteractionPath` property.
-
-In your `viewDidLoad` or any other view lifecycle methods, which come before `viewDidAppear`, simply set an Interaction path as shown below:
-
-Swift:
-```swift
-override func viewDidLoad() {
-	super.viewDidLoad()
-	// Do any additional setup after loading the view
-	self.oneInteractionPath = "/myCustomInteractionPath"
-}
-```
-
-
-Objective-C:
-```objective-c
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	// Do any additional setup after loading the view.
-	self.oneInteractionPath = @"/myCustomInteractionPath";
-}
-```
-
-*Note:*
-- When setting the Interaction path programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
+- At any point you can opt a user back in by passing `false` into the same method. 
+- For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Exclude an Interaction
+You can exclude a specific view from being automatically recognized as an Interaction by using the `excludeInteractionView` method.
 
-You can exclude a specific view controller from being recognized as an Interaction by using the `excludeInteractionPath` method.
+In your `onCreate` or `onCreateView`, call `excludeInteractionView` and pass the view you would like to exclude from being automatically tracked like shown in the example below:
 
-In your `viewDidLoad` or any other view lifecycle methods, which come before the `viewDidAppear` method, simply set `excludeInteractionPath` to `true` as shown below:
-
-Swift:
-```swift
-override func viewDidLoad() {
-	super.viewDidLoad()
-	// Do any additional setup after loading the view
-	self.excludeInteractionPath = true
+```java
+@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                         Bundle savedInstanceState) {
+    rootView = inflater.inflate(R.layout.fragment_layout_2, null);
+    One.getInstance(getActivity()).excludeInteractionView(rootView);
+    return rootView;
 }
 ```
-
-
-Objective-C:
-```objective-c
-- (void)viewDidLoad {    
-	[super viewDidLoad];
-	// Do any additional setup after loading the view.
-	self.excludeInteractionPath = YES;
-}
-```
-
-By default, `excludeInteractionPath` returns `false`.
 
 ### Disable automatic Interaction detection
+You can disable automatic Interaction detection by calling the method `disableAutomaticInteractionDetection` and passing `true` as a parameter, as shown below:
 
-You can disable automatic Interaction detection by calling the method `disableAutomaticInteractionDetection:` and passing `true` as a parameter, as shown below:
-
-Swift:
-```swift
-One.disableAutomaticInteractionDetection(true)
+```java
+One one = One.getInstance(getApplicationContext());
+one.disableAutomaticInteractionDetection(true);
 ```
 
-
-Objective-C:
-```objective-c
-[One disableAutomaticInteractionDetection:YES];
-```
-
-An appropriate place to call the method might be under `didFinishLaunchingWithOptions` in your application delegate.
-
-By disabling automatic Interaction detection, the SDK will no longer automatically send Interaction requests as view controllers are presented on screen. It becomes your responsibility to send them when needed by using the send Interaction methods outlined below.
+By disabling automatic Interaction detection, the SDK won’t automatically send Interaction requests. It becomes your responsibility to send them when needed by using the methods provided in the sections below.
 
 You can set this back to false at any point to restart automatic Interaction detection.
 
-### Send an Interaction request programmatically
-
+### Send an Interaction request programmatically 
 You can send an Interaction request programmatically by calling the `sendInteraction` method and passing an Interaction path as a parameter as shown below:
-
-Swift:
-```swift
-One.sendInteraction("/InteractionPath")
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendInteraction("/interactionPath");
 ```
-
-
-Objective-C:
-```objective-c
-[One sendInteraction:@"/InteractionPath"];
-```
-
-*Note:*
+*Note:* 
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Send an Interaction request programmatically with a completion block
-
-You can send an Interaction request programmatically by passing an Interaction path and a completion block as a parameters, as shown below:
-
-Swift:
-```swift
-One.sendInteraction("/InteractionPath") { (response, error) -> Void in
-	if (error == nil) {
-		if let response = response {
-			One.processResponse(response)
-		}
-	}
-}
+### Send an Interaction request programmatically 
+You can send an Interaction request programmatically and retrieve its response by calling the `sendInteraction` method with a callback. You need to pass an Interaction path and a callback to the method as shown below:
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendInteraction("/interactionName", new GetCallback<ResponseObject>() {  public void done(ResponseObject response, ThunderheadException e) {
+    if (e == null) {
+      // Success!
+      one.processResponse(response);
+    } else {
+      // Failure!
+    }
+  }
+});
 ```
+The response can be passed to `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
 
-
-Objective-C:
-```objective-c
-[One sendInteraction:@"/InteractionPath" withBlock:^(NSDictionary *response, NSError *error) {
-	if (!error) {
-		[One processResponse:response];
-	}
-}];
-```
-The response can be passed to the `processResponse` method as a parameter, as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
-
-*Note:*
+*Note:* 
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Retrieve a response for a UIViewController instance
-
-You can retrieve a response for a specific automatically triggered Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class.
-
-#### Retrieve a response for a UIViewController instance
-
-If your object is an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
-
-1. Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
-
-	Swift:
-	```swift
-	One.addInteractionResponseDelegate(<your-object>)
-	```
-
-
-	Objective-C:
-	```objective-c
-	[One addInteractionResponseDelegate:<your-object>];
-	```
-
-*Note:*
-- The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
-
-2. Make your object conform to the protocol `OneInteractionResponseDelegate`:
-
-	Swift:
-	```swift
-	class MyViewController: UIViewController, OneInteractionResponseDelegate
-	```
-
-
-	Objective-C:
-	```objective-c
-	@interface MyViewController() <OneInteractionResponseDelegate>
-	```
-
-3. If the automatic Interaction detection is switched off, set a value to oneInteractionPath property of your object:
-
-	Swift:
-	```swift
-	self.oneInteractionPath = "/InteractionPath";
-	```
-
-
-	Objective-C:
-	```objective-c
-	self.oneInteractionPath = @"/InteractionPath";
-	```
-
-4.	Implement a protocol’s required method as shown below:
-
-	Swift:
-	```swift
-	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
-        if (response != nil) {
-            // Work with the response.
-            /* Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction. */ 
-            One.processResponse(response)
-        }
-	}
-	```
-
-
-	Objective-C:
-	```objective-c
-	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
-    	if (response) {
-    		// Do something with the response.
-    		// Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
-    		[One processResponse:response];
-    	}
-	}
-	```
-
-The method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
-
-5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
-
-	Swift:
-	```swift
-	One.removeInteractionResponseDelegate(<your-object>)
-	```
-
-
-	Objective-C:
-	```objective-c
-	[One removeInteractionResponseDelegate:<your-object>];
-	```
-
-#### Retrieve a response for other instances
-
-If your object is not an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
-
-1.	Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
-
-	Swift:
-	```swift
-	One.addInteractionResponseDelegate(<your-object>)
-	```
-
-
-	Objective-C:
-	```objective-c
-	[One addInteractionResponseDelegate:<your-object>];
-	```
-
-*Note:*
-- The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
-
-2. Make your object conform to the protocol `OneInteractionResponseDelegate`:
-
-	Swift:
-	```swift
-	class YourObject: YourObjectClass, OneInteractionResponseDelegate
-	```
-
-
-	Objective-C:
-	```objective-c
-	@interface YourObject() <OneInteractionResponseDelegate>;
-	```
-
-3. Declare a variable `oneInteractionPath` and set its value:
-
-	Swift:
-	```swift
-	class YourObject: YourObjectClass, OneInteractionResponseDelegate {
-		var oneInteractionPath: String! = "/InteractionPath"
-		...
-	}
-	```
-
-
-	Objective-C:
-	```objective-c
-	<your-object>.oneInteractionPath = @"/InteractionPath";
-	```
-
-4.	Implement a protocol’s required method as shown below:
-
-	Swift:
-	```swift
-	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
-        if (response != nil) {
-            // Work with the response.
-        	// Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
-        	One.processResponse(response)
-        }
-	}
-	```
-
-
-	Objective-C:
-	```objective-c
-	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
-    	if (response) {
-    		// Do something with the response.
-    		// Pass on the response to ONE SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
-    		[One processResponse:response];
-    	}
-	}
-	```
-
-The above mentioned method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
-
-5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
-
-	Swift:
-	```swift
-	One.removeInteractionResponseDelegate(<your-object>)
-	```
-
-
-	Objective-C:
-	```objective-c
-	[One removeInteractionResponseDelegate:<your-object>];
-	```
-
-
-### Send Properties to Thunderhead ONE or Salesforce Interaction Studio
-
-Properties can be sent to Thunderhead ONE or Salesforce Interaction Studio as Strings, in the form of key/value pairs using the SDK's public methods, as shown below:
-
-Swift:
-```swift
-let myProperties = ["key1":"value1","key2":"value2"]
+### Retrieve a response for an automatically triggered Interaction request 
+You can retrieve a response for an automatically triggered interaction request by registering for an interaction callback as shown below:
+```java
+One one = One.getInstance(getApplicationContext());
+one.registerInteractionCallback("/interactionName", new InteractionCallback() {  
+ @Override
+ public void onReceive(String interactionPath, BaseResponse response) {
+    one.processResponse(response);
+ }
+});
 ```
+The response can be passed to the `processResponse` method as shown above. By calling this method the response is returned to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
 
-
-Objective-C:
-```objective-c
-NSDictionary *myProperties = @{@"Key1":@"Value1", @"Key2":@"Value2"};
+*Note:* 
+- If you register to retrieve a response for an automatically triggered Interaction, you are responsible to unregister from this callback. You are advised to do this as soon as you no longer need this callback or under your activity or fragment’s `onStop` method.
+    
+    ```java
+    protected void onStop() {
+        super.onStop();
+        one.unregisterInteractionCallback("/interactionName");
+    }
+    });
+    ```
+    
+### Explicitly define a View as an Interaction
+You can explicitly define a view as an Interaction by calling `setInteractionView` method and passing a view and desired Interaction path to it as shown below:
+```java
+One.getInstance(this).setInteractionView(customView, "/interactionPath");
 ```
-
-#### Send properties to a base touchpoint
-
-To send properties to a base touchpoint, call the following public method and pass in your dictionary of key/value pair strings:
-
-Swift:
-```swift
-One.sendBaseTouchpointProperties(myProperties)
-```
-
-
-Objective-C:
-```objective-c
-[One sendBaseTouchpointProperties:myProperties];
-```
-
-*Note:*
-- This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
-- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio.
-
-#### Send an Interaction request with properties
-
-You can send an Interaction request with Interaction properties by calling the method below, passing Interaction path and dictionary of properties to it:
-
-Swift:
-```swift
-One.sendInteraction("/interactionPath", withProperties:myProperties)
-```
-
-
-Objective-C:
-```objective-c
-[One sendInteraction:@"/interactionPath" withProperties:myProperties];
-```
-
-*Note:*
-- This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
-- Only the tid from the response will be used by the SDK - all other response objects will be ignored.
-- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
-
-#### Send an Interaction request with properties and a completion block
-
-You can send an Interaction request with properties and a completion block by calling the method below, passing an Interaction path, a dictionary of properties and a completion block to it:
-
-Swift:
-```swift
-One.sendInteraction("/interactionPath", withProperties:myProperties) {
-	(response, error) in
-		if (error == nil) {
-			if let response = response {
-				One.processResponse(response)
-			}
-		}
+This could be useful in the following cases:
+1. If an activity with the same layout implements generic functionality and used to represent various Interactions within the same application. For example it could be a list view, which is being reused across the application to display branch locations in one use case and cash point locations in a second use case.
+```java
+public class LocationsList extends ListActivity implements GISDataPresenter{
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+ 	  super.onCreate(savedInstanceState);
+	  …
+     	if (presenterType == CASH_POINT_LOCATION) {
+          	One.getInstance(this).setInteractionView(getListView(), "/cashPointList");
+ 		} else {
+             One.getInstance(this).setInteractionView(getListView(), "/branchList");
+            }
+ 	   …
+  }
 }
 ```
-
-
-Objective-C:
-```objective-c
-[One sendInteraction:@"/interactionPath" withProperties:myProperties andBlock:^(NSDictionary *response, NSError *error) {
-	if (!error) {
-		[One processResponse:response];
-	}
-}];
+2. If a fragment implements generic functionality and could represent various Interactions. For instance in one case it could show a screen containing laptops in another case it could show cameras category.
+```java 
+@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+View view = inflater.inflate(R.layout.products_tiles_view, container, false);
+  if (category == Product.Category.LAPTOP) {
+      One.getInstance(getActivity()).setInteractionView(view, "/LaptopsList");
+  } else if (category == Product.Category.CAMERA) {
+      One.getInstance(getActivity()).setInteractionView(view, "/CamerasList");
+  }
+  …
+  return view;
+}
+```
+3. If an Interaction is represented by a custom view.
+```java
+private void showVariants() {
+    if (variantsView == null) {
+        inflater.inflate(R.layout.variants_slide, mainPaneView, false);
+        One.getInstance(this).setInteractionView(variantsView, "/Variants");
+    }
+    …
+}
+```
+### Send Properties to Thunderhead ONE or Salesforce Interaction Studio
+Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. Create a HashMap containing key/value pair strings, and call the appropriate properties public method, as follows:
+```java
+HashMap<String, String> propertiesMap = new HashMap<>();
+propertiesMap.put("key1", "value1");
+propertiesMap.put("key2", "value2");
 ```
 
+#### Send properties to a base Touchpoint
+To send properties to a base Touchpoint, call the following public method and pass in your `HashMap`:
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendBaseTouchpointProperties(propertiesMap);
+```
+*Note:* 
+- This sends a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
+- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio. The capture point api name in Thunderhead ONE, or Salesforce Interaction Studio, would have to match your key name sent above.
+
+#### Send Properties to an Interaction
+To send properties to a specific Interaction, call the following public method, passing the Interaction path as a string together with your HashMap containing the said properties:
+
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendProperties("/interactionPath", propertiesMap);
+```
 *Note:*
-- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio.
+- This sends a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
+- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
+
+#### Send an Interaction request with properties
+You can send an Interaction request with properties by calling the `sendInteraction` method, and passing an Interaction path as a parameter and a `HashMap` containing the said properties, as shown below:
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendInteraction("/interactionPath", propertiesMap);
+```
+*Note:* 
+- This sends a POST request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
-
-#### Send properties to an Interaction
-
-To send properties to a specific Interaction, call the following public method, passing in your dictionary of key/value pair strings and providing the Interaction path:
-
-Swift:
-```swift
-One.sendProperties(myProperties, forInteractionPath:"/interactionPath")
+#### Send an Interaction Request with properties and a callback
+You can send an Interaction request with properties and retrieve its response by calling corresponding `sendInteraction` method with a callback. You need to pass an Interaction path, a properties map and a callback to the method as shown below:
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendInteraction("/interactionName", propertiesMap, new GetCallback<ResponseObject>() {
+  public void done(ResponseObject response, ThunderheadException e) {
+    if (e == null) {
+      // Success!
+      one.processResponse(response);
+    } else {
+      // Failure!
+    }
+  }
+});
 ```
+The response can be passed to the `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
 
-
-Objective-C:
-```objective-c
-[One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
-```
-
-*Note:*
-- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
+*Note:* 
+- This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 #### Send a response code
-
-To send a response code, call the method shown below by passing the response code and the corresponding Interaction path as parameters:
-
-Swift:
-```swift
-One.sendResponseCode("yourCode", forInteractionPath:"/InteractionPath")
+To send a response code, call `sendResponseCode` by passing the response code and the corresponding interaction path as parameters as shown below:
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendResponseCode("yourCode", "/interactionPath");
 ```
 
-
-Objective-C:
-```objective-c
-[One sendResponseCode:@"yourCode" forInteractionPath:@"/interactionPath"];
-```
-
-*Note:*
+*Note:* 
 - This method should be used when displaying optimizations programmatically and you need to capture the user's response.
 - This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Identity sync
-
-#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio
-
-To synchronise the Safari Mobile identity set by the ONE Tag, or Interaction Studio Tag, with the current app identity, call:
-
-Swift:
-```swift
-One.identitySync()
-```
-
-
-Objective-C:
-```objective-c
-[One identitySync];
-```
-
-*Note:*
-- This functionality only works in iOS 9 and 10.
-
-#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint
-
-To synchronise the Safari Mobile identity set by the ONE Tag, or Interaction Studio Tag, with the current app identity and your web touchpoint, call:
-
-Swift:
-```swift
-One.identitySyncWithURL(URL(string: "https://yourWebsite"))
-```
-
-
-Objective-C:
-```objective-c
-[One identitySyncWithURL:[NSURL URLWithString:@"https://yourwebsite"]];
-```
-
-*Note:*
-- This functionality only works in iOS 9 and 10.
-
 ### Ability to whitelist identity transfer links
 
-The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behavior, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the method `whitelistIdentityTransferLinks` and passing your links as shown below:
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the method `whitelistIdentityTransferLinks` and passing your links as shown below:
 
-Swift:
-```swift
+```java
 // This example shows how to whitelist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
 // https://www.uber.com/en/ride/, etc.
-One.whitelistIdentityTransferLinks(["www.google.com","www.uber.com"])
+One one = One.getInstance(getApplicationContext());
+ArrayList<String> whitelist = new ArrayList<>();
+whitelist.add("www.google.com");
+whitelist.add("www.uber.com");
+one.whitelistIdentityTransferLinks(whitelist);
 
-// This example shows how to whitelist the main domain name
-// wikipedia.org and any subdomains. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-One.whitelistIdentityTransferLinks(["*.wikipedia.org"]
-```
-
-
-Objective-C:
-```objective-c
-// This example shows how to whitelist links for specific domain names
-// www.google.com and www.uber.com. For example,
-// https://www.google.com, https://www.uber.com/en/,
-// https://www.uber.com/en/ride/, etc.
-[One whitelistIdentityTransferLinks:@[@"www.google.com", @"www.uber.com"]];
 
 // This example shows how to whitelist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-[One whitelistIdentityTransferLinks:@[@"*.wikipedia.org"]];
+One one = One.getInstance(getApplicationContext());
+ArrayList<String> whitelist = new ArrayList<>();
+// this will cover any wikipedia.org domains and subdomains
+whitelist.add("*.wikipedia.org");
+one.whitelistIdentityTransferLinks(whitelist);
 ```
 
-*Note:*
+*Note:* 
 - When a link is whitelisted, a `one-tid` will be appended to the whitelisted link/s only.
 
 ### Ability to blacklist identity transfer links
 
-The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the method `blacklistIdentityTransferLinks` and passing your links as shown below:
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the method `blacklistIdentityTransferLinks` and passing your links as shown below: 
 
-Swift:
-```swift
+```java
 // This example shows how to blacklist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
 // https://www.uber.com/en/ride/, etc.
-One.blacklistIdentityTransferLinks(["www.google.com","www.uber.com"])
+One one = One.getInstance(getApplicationContext());
+ArrayList<String> blacklist = new ArrayList<>();
+blacklist.add("www.google.com");
+blacklist.add("www.uber.com");
+one.blacklistIdentityTransferLinks(blacklist);
+
 
 // This example shows how to blacklist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-One.blacklistIdentityTransferLinks(["*.wikipedia.org"]
+One one = One.getInstance(getApplicationContext());
+ArrayList<String> whitelist = new ArrayList<>();
+// this will cover any google.com domains and subdomains
+blacklist.add("*.wikipedia.org");
+one.blacklistIdentityTransferLinks(blacklist);
 ```
 
-
-Objective-C:
-```objective-c
-// This example shows how to blacklist links under specific domain names
-// www.google.com and www.uber.com. For example,
-// https://www.google.com, https://www.uber.com/en-BY/,
-// https://www.uber.com/en/ride/, etc.
-[One blacklistIdentityTransferLinks :@[@"www.google.com", @"www.uber.com"]];
-
-// This example shows how to blacklist the main domain name
-// wikipedia.org and any subdomain. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-[One blacklistIdentityTransferLinks:@[@"*.wikipedia.org"]];
-```
-
-*Note:*
-- If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link.
+*Note:* 
+- If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link. 
 
 ###	Disable automatic identity transfer
 
-By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing `true` as shown below:
+If the Orchestration Plugin was enabled, the SDK adds a `one-tid` as a URL query parameter to web links opened in `WebView`, `CustomTabs` and external browsers(via `Intent`). To disable this functionality, call the `disableIdentityTransfer` method by passing `true` as shown below:  
 
-Swift:
-```swift
-One.disableIdentityTransfer(true)
+```java
+One one = One.getInstance(getApplicationContext());
+one.disableIdentityTransfer(true);
 ```
 
-
-Objective-C:
-```objective-c
-[One disableIdentityTransfer:YES];
-```
-
-*Note:*
+*Note:* 
 - This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
 #### Send properties for a URL scheme
 
-If you have disabled automatic identity transfer you can still send all URL parameters received as part of a URL scheme, which opens your app, by calling:
+If you have disabled automatic identity transfer, you can still send all URL parameters received as part of a deep link by calling the `handleURL` SDK public method and passing the URL as a parameter into it, as shown below:
 
-Swift:
-```swift
-One.handleURL(yourNSURL)
+```java
+One one = One.getInstance(getApplicationContext());
+one.handleURL("myapp://MainActivity?customerKey=1");
 ```
 
+*Note:* 
+- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 
-Objective-C:
-```objective-c
-[One handleURL:yourNSURL];
-```
-
-passing the URL as a parameter into the handleURL SDK public method, as shown below:
-
-Swift:
-```swift
-func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool  {
-	One.handleURL(yourNSURL)
-	return true
-}
-```
-
-
-Objective-C:
-```objective-c
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	[One handleURL:url];
-	return YES;
-}
-```
-*Note:*
-- This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
-
-#### Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer
+#### Append a ‘one-tid’ parameter to a `URL` to facilitate identity transfer 
 
 If you have disabled automatic identity transfer, you can still add a `one-tid` parameter to a link opened from the app programmatically, by calling `getURLWithOneTid` as shown below:
 
-Swift:
-```swift
-One.getURLWithOneTid(yourNSURL)
+```java
+One one = One.getInstance(getApplicationContext());
+URL urlWithOneTid = one.getURLWithOneTid(url);
 ```
 
+Once you have the `urlWithOneTid`, pass this into the method which handles the opening of the `URL`.
 
-Objective-C:
-```objective-c
-[One getURLWithOneTid:yourNSURL];
+#### Append a ‘one-tid’ parameter to a `Uri` to facilitate identity transfer 
+
+If you have disabled automatic identity transfer, you can still add a `one-tid` parameter to a link opened from the app programmatically, by calling `getUriWithOneTid` as shown below:
+
+```java
+One one = One.getInstance(getApplicationContext());
+Uri uriWithOneTid = one.getUriWithOneTid(url);
 ```
 
-passing the URL as a parameter, which will return back a the same `NSURL` containing a ‘one-tid’ parameter.
-
-Swift:
-```swift
-let urlWithOneTid = One.getURLWithOneTid(yourNSURL)
-```
-
-
-Objective-C:
-```objective-c
-NSURL *urlWithOneTid = [One getURLWithOneTid:yourNSURL];
-```
+Once you have the `uriWithOneTid`, pass this into the method which handles the opening of the `Uri`.
 
 ### Disable automatic outbound link tracking
 
-By default, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in Safari, `SafariViewController` or `WKWebView` to facilitate last click attribution.
+If the Orchestration Plugin was enabled, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in a `WebView`, `CustomTab` or external browser to facilitate last click attribution.
 
 To disable this functionality call the `disableAutomaticOutboundLinkTracking` method and pass `true`, as shown below:
 
-Swift:
-```swift
-One.disableAutomaticOutboundLinkTracking(true)
-```
-
-
-Objective-C:
-```objective-c
-[One disableAutomaticOutboundLinkTracking:YES];
+```java
+One one = One.getInstance(getApplicationContext());
+one.disableAutomaticOutboundLinkTracking(true);
 ```
 
 #### Programmatically trigger an outbound link tracking Interaction call
 
-If you have disabled automatic outbound link tracking, you can still track a URL, by calling:
+If you have disabled automatic outbound link tracking, you can still track a `URL` or `Uri`, by calling:
 
-Swift:
-```swift
-One.sendInteractionForOutboundLink(yourNSURL)
+```java
+// URL example
+One one = One.getInstance(getApplicationContext());
+try {
+    one.sendInteractionForOutboundLink(new URL("https://www.yourfullurl.com/"));
+} catch (MalformedURLException e) {
+    e.printStackTrace();
+}
+
+// URI example
+One one = One.getInstance(getApplicationContext());
+try {
+     one.sendInteractionForOutboundLink(Uri.parse("https://www.yourfullurl.com/"));
+} catch (MalformedURLException e) {
+    e.printStackTrace();
+}
+
 ```
+Pass the `URL` or `Uri`, which will send an Interaction request to `/one-click` using the same logic as available automatically.
 
-
-Objective-C:
-```objective-c
-[One sendInteractionForOutboundLink:yourNSURL];
-```
-
-passing the URL which will send an Interaction request ‘/one-click’ using the same logic as available automatically.
-
-*Note:*
-- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio.
+*Note:* 
+- This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
+- The `/one-click` Interaction request should be setup in Thunderhead ONE, or Salesforce Interaction Studio, to capture the appropriate attributes and activity.
 
 ### Enable push notifications
+To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, Firebase Cloud Messaging (FCM) must be configured by following the FCM setup instructions. 
+At minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
 
-To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, take the following steps:
+#### Minimum Gradle Configuration 
+To use the codeless push notifications functionality without using FCM directly, you need to at least have the `google-services` plugin applied to your app build.gradle: 
 
-1.	Enable Push Notifications in Capabilities pane
-2.	Enable Background Modes in Capabilities pane
-3.	Select Remote Notifications under Background Modes section
-4.	Call the method `enablePushNotifications` by passing `true` as shown below:
+1. Add the Google Services Plugin to your classpath in the top-level build.gradle file, located in the root project directory, as shown below:
+    ```gradle
+    buildscript {
+        repositories {
+            google()
+            jcenter()
+            mavenCentral()
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.4.2'
+            // for cloud messaging support
+            classpath 'com.google.gms:google-services:4.2.0'
+        }
+    }
+    ```
+2.	Apply the Google Messaging Service plugin to the app-level build.gradle file, as shown below:
 
-	Swift:
-	```swift
-	One.enablePushNotifications(true)
-	```
+    ```gradle
+    // place this at the bottom of your app build.gradle
+    apply plugin: 'com.google.gms.google-services'
+    ```
+    
+    - The `Warning: The app gradle file must have a dependency on com.google.firebase:firebase-core for Firebase services to work as intended.` 
+    can safely be ignored as this is not required for Push Notification Support.
+    
+#### Enable codeless push notification support programmatically
+- For Firebase Cloud Messaging simply enable push notifications as shown below:
+    ```java
+    One one = One.getInstance(getApplicationContext());
+    one.enablePushNotifications(true);
+    ```
+*Note:* 
+- When the Thunderhead SDK is the only push message provider in your application and you enable codeless push notification support, 
+the SDK will automatically get the push token and handle receiving of push notifications on behalf of your app.
 
+##### Configure Push Notifications With Multiple Push Message SDKs
+When the Thunderhead SDK is integrated into an App that has multiple push message providers for Firebase, extra configuration is required.
+The Thunderhead SDK message APIs must be called from the service that receives the FCM token and FCM Message.  
 
-	Objective-C:
-	```objective-c
-	[One enablePushNotifications:YES];
-	```
+```java
+// Call when a new FCM token is retrieved:
+One.getInstance(context).processMessagingToken(newToken);
 
-*Note:*
-- To disable this feature if it once was enabled, simply call the same method and pass `false`.   
+// Call when a new message is received from Firebase:
+One.getInstance(context).processMessage(message);
+```
+
+An example of a Firebase Messaging Service that calls the Thunderhead SDK messaging APIs:
+```java
+public final class FirebaseService extends FirebaseMessagingService {
+    private static final String TAG = "FirebaseService";
+    
+    @Override
+    public void onMessageReceived(final RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        try {
+            One.getInstance(getApplicationContext()).processMessage(remoteMessage);
+            // Call other Push Message SDKS.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
+    @Override
+    public void onNewToken(final String newToken) {
+        super.onNewToken(newToken);
+        try {
+            One.getInstance(getApplicationContext()).processMessagingToken(newToken);
+            // Call other Push Message SDKS.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+}
+```
+
+Do not forget to register the customer service (if required) that calls the Thunderhead SDK in the manifest:
+
+```xml
+
+<!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
+ <service
+            android:name="com.example.FirebaseService">
+            <intent-filter android:priority="100">
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+```
+
+##### Set a non adaptive fallback.
+
+Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
+The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
+
+The Thunderhead SDK will optimize your user's App experience by sending Push Notifications with _your_ application's icon when appropriate. In order to avoid the infinite crash
+loop that the above Android bug causes, the Thunderhead SDK will not show the message if a fallback *NON ADAPTIVE* icon is not set at initialization time on Api 26 devices. 
+Changing your application's icon to a non adaptive icon is not required and the fall back is **only required for Api 26**.
+
+The Thunderhead SDK will warn you at init if the icon has not been set by logging the `14019` error. See [Troubleshooting Guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
+
+Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
+
+```kotlin
+One.getInstance(context)?.run {
+    // set icon before init to avoid warning.
+    messageConfig = MessageConfig(android.R.drawable.star_on)
+    enablePushNotifications(true)
+    init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host)
+}
+```
+
+```java
+One one = One.getInstance(getApplicationContext());
+one.setMessageConfig(
+    new MessageConfig(android.R.drawable.star_on)
+);
+one.enablePushNotifications(true);
+one.init(siteKey, touchpoint, apiKey, sharedSecret, userId, mode, host);
+```
+
 
 ### Get a push token
 
 To get the push token codelessly retrieved by the SDK, call the `getPushToken` method as shown below:
 
-Swift:
-```swift
-let pushToken =  One.getPushToken()
+```java  
+One one = One.getInstance(getApplicationContext());
+String pushToken = one.getPushToken();
 // work with the push token
 ```
-
-
-Objective-C:
-```objective-c
-NSString *pushToken = [One getPushToken];
-// work with the push token
-```
-
 *Note:*
-- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider.
+- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider. 
 
 ### Send a push token
 
-To send a push token, call `sendPushToken` method by passing a push token:
+To send a push token, call the `sendPushToken` method by passing a push token, as shown below:
 
-Swift:
-```swift
-One.sendPushToken(pushToken)
+```java
+One one = One.getInstance(getApplicationContext());
+one.sendPushToken("DUI03F379S1UUIDA6DADF8DFQPZ");
+
 ```
-
-
-Objective-C:
-```objective-c
-[One sendPushToken:pushToken];
-```
-
-The push token can be obtained and sent from the app delegate’s method `didRegisterForRemoteNotificationsWithDeviceToken` as shown below:
-
-Swift:
-```swift
-func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-	One.sendPushToken(deviceToken)
-	// work with the push token
-}
-```
-
-
-Objective-C:
-```objective-c
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-	[One sendPushToken:deviceToken];
-	// work with the push token
-}
-```
-
-*Note:*
-- If you haven't enabled push notification support, you can use this function to programmatically store the push token in Thunderhead ONE or Salesforce Interaction Studio.
-
-### Handle notifications received through the ONE APNs interface
-
-##### Handling notifications while the app in foreground or background
-
-Swift:
-```swift
-func application(_ application: UIApplication, 
-	 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
-   	 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-	 // Handle notification 
-	 // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
-	 completionHandler(.newData)
-}
-```
-
-
-Objective-C:
-```objective-c
-- (void)application:(UIApplication *)application 
-	didReceiveRemoteNotification:(NSDictionary *)userInfo 
-	fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
-{
-    // Handle notification 
-	// Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
-	completionHandler(UIBackgroundFetchResultNewData);
-}
-```
-
-
-##### Displaying notifications while the app in foreground
-
-Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display a standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method. 
-
-For example, to show a standard alert view, do the following:
-
-**iOS 10+**
-
-Swift:
-```swift
-func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                         willPresent notification: UNNotification, 
-               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-	// Handle notification
-	completionHandler([.alert, .badge, .sound])
-}
-```
-
-
-Objective-C:
-```objective-c
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center 
-       willPresentNotification:(UNNotification *)notification 
-         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
-{
-	// Handle notification
-	completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
-}
-```
-
 
 ### Send a location object
 
 To send a location object, call:
 
-Swift:
-```swift
-One.updateLocation(location)
+```java
+One one = One.getInstance(getApplicationContext());
+one.updateLocation(location);
 ```
 
+passing the location object as a parameter to the `updateLocation` method. Use `LocationListener` callback method to call ``updateLocation`, as shown below:
 
-Objective-C:
-```objective-c
-[One updateLocation:location];
-```
+```java
+LocationListener locationListener = new LocationListener() {
+    public void onLocationChanged(Location location) {
+        One.getInstance(Activity.this).updateLocation(location);
+    }
 
-passing the location object as a parameter to the `updateLocation` method. Use `CLLocationManager` delegate methods to call `updateLocation`, as shown below:
+    public void onStatusChanged(String provider, int status, Bundle extras){
+    }
 
-Swift:
-```swift
-func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-	One.updateLocation(locations.first)
-}
-```
+    public void onProviderEnabled(String provider) {
+    }
 
-
-Objective-C:
-```objective-c
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-	[One updateLocation:[locations firstObject]];
-}
-```
-
-### Get a structure data
-
-To get a structure data, call `getStructureData` method by passing a structure’s name and a completion block as shown below:
-
-Swift:
-```swift
-One.getStructureData("yourStructureName") { (response, error) in
-	if (error == nil) {
-		// work with response
-	}
-}
-```
-
-
-Objective-C:
-```objective-c
-[One getStructureData:@"yourStructureName" withBlock:^(NSDictionary *response, NSError *error) {
-	if (!error) {
-		// work with response
-	}
-}];
+    public void onProviderDisabled(String provider) {
+    }
+};
 ```
 
 ### Get Tid
 
 To get the current `tid` used by the SDK, call:
 
-Swift:
-```swift
-One.getTid
-```
-
-
-Objective-C:
-```objective-c
-[One getTid];
+```java
+One one = One.getInstance(getApplicationContext()); 
+one.getTid();
 ```
 
 *Note:*
-- This will return the `tid` assigned to the current user as a `NSString`.
-- Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE or Salesforce Interaction Studio.
-- The tid can also be used if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
+- This will return the `tid` assigned to the current user as a `String`.
+- Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE, or Salesforce Interaction Studio, or if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
 
 ### Access Debug Information
 
-The Thunderhead SDK for iOS provides 4 distinct debugging levels, that can be enabled in the `didFinishLaunchingWithOptions` method of your project's AppDelegate, as shown below:
+The Thunderhead SDK for Android provides 4 distinct debugging levels, that can be enabled once the SDK has been initialized, as shown below:
 
-1. `kOneLogLevelNone` - if set, no messages will be displayed in the console.
-
-	Swift:
-	```swift
-	One.setLogLevel(.None)
+1. `NONE` - if set, no messages will be displayed in the console.
+	
+	```java
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.NONE);
 	```
 
-
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelNone];
+2. `ALL` - if set, all log messages will be displayed in the console.
+	
+	```java
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.ALL);
 	```
 
-2. `kOneLogLevelAll` - if set, all log messages will be displayed in the console.
+3. `WEB_SERVICE` - if set, only web service logs will be displayed in the console.
 
-	Swift:
-	```swift
-	One.setLogLevel(.All)
+	```java
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.WEB_SERVICE);
 	```
 
-
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelAll];
+4. `FRAMEWORK` - if set, only framework logs will be displayed in the console.
+	
+	```java
+	// this is an instance of Android Context.
+	One.getInstance(this).setLogLevel(OneLogLevel.FRAMEWORK);
 	```
 
-3. `kOneLogLevelWebService` - if set, only web service logs will be displayed in the console.
-
-	Swift:
-	```swift
-	One.setLogLevel(.WebService)
-	```
-
-
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelWebService];
-	```
-
-4. `kOneLogLevelFramework` - if set, only framework logs will be displayed in the console.
-
-	Swift:
-	```swift
-	One.setLogLevel(.Framework)
-	```
-
-
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelFramework];
-	```
-
-*Note:*
-- By default, the Thunderhead SDK for iOS does not display any debug log messages. However, exception messages are printed in the console, when these occur.
+*Note:* 
+- By default, the Thunderhead SDK for Android does not display any debug log messages. However, exception messages are printed in the console, when these occur.
 
 ### Identify the framework version
 
 You can find out the current version of the framework by calling:
 
-Swift:
-```swift
-One.frameworkVersion()
-```
-
-
-Objective-C:
-```objective-c
-[One frameworkVersion];
+```java
+One one = One.getInstance(getApplicationContext());
+one.frameworkVersion();
 ```
 
 ### Clear the user profile
 
 You can programmatically erase the user profile data by calling:
 
-Swift:
-```swift
-One.clearUserProfile()
+```java
+One one = One.getInstance(getApplicationContext());
+one.clearUserProfile();
 ```
-
-
-Objective-C:
-```objective-c
-[One clearUserProfile];
-```
-
-*Note:*
+*Note:* 
 - This method removes `tid` from local storage only.
-- For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+- For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
+## Further integration details 
+
+### How to disable the codeless identity transfer support
+To completely remove the codeless identity transfer functionality for Android, you need to make the following updates:
+1. Open the **top-level** `build.gradle` file and remove the following dependency reference.
+```gradle 
+classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
+```
+2. Open the **app-level** `build.gradle` file and remove the following references.
+```gradle 
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
+```
 
 ## Troubleshooting Guide
-[Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
+[Troubleshooting Guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
@@ -1258,4 +961,4 @@ Objective-C:
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
 ### Thunderhead ONE Support
-_The Thunderhead team is available 24/7 to answer any questions you have. Just email [onesupport@thunderhead.com](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._
+_The Thunderhead team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
