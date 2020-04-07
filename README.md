@@ -13,14 +13,14 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
 - [Installation](#installation)
   * [Manual installation](#manual-installation)
     + [`build.gradle` examples](#buildgradle-examples)
-      - [**Thunderhead ONE** `build.gradle` examples:](#thunderhead-one-buildgradle-examples)
-        * [Example of the **top-level** `build.gradle` file after integration:](#example-of-the-top-level-buildgradle-file-after-integration)
-        * [Example of the **app-level** `build.gradle` file after integration:](#example-of-the-app-level-buildgradle-file-after-integration)
-      - [**Salesforce Interaction Studio** `build.gradle` examples:](#salesforce-interaction-studio-buildgradle-examples)
-        * [Example of the **top-level** `build.gradle` file after integration:](#example-of-the-top-level-buildgradle-file-after-integration-1)
-        * [Example of the **app-level** `build.gradle` file after integration:](#example-of-the-app-level-buildgradle-file-after-integration-1)
+      - [Thunderhead ONE `build.gradle` examples](#thunderhead-one-buildgradle-examples)
+        * [Example of the top-level `build.gradle` file after integration](#example-of-the-top-level-buildgradle-file-after-integration)
+        * [Example of the app-level `build.gradle` file after integration](#example-of-the-app-level-buildgradle-file-after-integration)
+      - [Salesforce Interaction Studio `build.gradle` examples](#salesforce-interaction-studio-buildgradle-examples)
+        * [Example of the top-level `build.gradle` file after integration](#example-of-the-top-level-buildgradle-file-after-integration-1)
+        * [Example of the app-level `build.gradle` file after integration](#example-of-the-app-level-buildgradle-file-after-integration-1)
 - [Use the Codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
-  * [The Thunderhead Application Manifest File Permissions:](#the-thunderhead-application-manifest-file-permissions)
+  * [The Thunderhead Application Manifest File Permissions](#the-thunderhead-application-manifest-file-permissions)
   * [Subclass your `Application` Class](#subclass-your-application-class)
   * [Initialize the SDK](#initialize-the-sdk)
     + [Set up the Framework in User mode](#set-up-the-framework-in-user-mode)
@@ -51,7 +51,7 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
     + [Minimum Gradle Configuration](#minimum-gradle-configuration)
     + [Enable codeless push notification support programmatically](#enable-codeless-push-notification-support-programmatically)
       - [Configure Push Notifications With Multiple Push Message SDKs](#configure-push-notifications-with-multiple-push-message-sdks)
-      - [Set a non adaptive fallback.](#set-a-non-adaptive-fallback)
+      - [Set a non adaptive fallback](#set-a-non-adaptive-fallback)
   * [Get a push token](#get-a-push-token)
   * [Send a push token](#send-a-push-token)
   * [Send a location object](#send-a-location-object)
@@ -787,7 +787,7 @@ Do not forget to register the customer service (if required) that calls the Thun
         </service>
 ```
 
-##### Set a non adaptive fallback.
+##### Set a non adaptive fallback
 
 Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
 The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
