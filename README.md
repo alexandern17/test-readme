@@ -12,13 +12,6 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
 
 - [Installation](#installation)
   * [Manual installation](#manual-installation)
-    + [`build.gradle` examples](#-buildgradle-examples)
-      - [Thunderhead ONE `build.gradle` examples:](#-thunderhead-one-buildgradle-examples-)
-        * [Example of the top-level `build.gradle` file after integration:](#example-of-the-top-level-buildgradle-file-after-integration-)
-        * [Example of the app-level `build.gradle` file after integration:](#example-of-the-app-level-buildgradle-file-after-integration-)
-      - [Salesforce Interaction Studio `build.gradle` examples:](#-salesforce-interaction-studio-buildgradle-examples-)
-        * [Example of the top-level `build.gradle` file after integration:](#example-of-the-top-level-buildgradle-file-after-integration-1)
-        * [Example of the app-level `build.gradle` file after integration:](#example-of-the-app-level-buildgradle-file-after-integration-1)
 - [Use the Codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
   * [The Thunderhead Application Manifest File Permissions:](#the-thunderhead-application-manifest-file-permissions-)
   * [Subclass your `Application` Class](#subclass-your-application-class)
@@ -30,20 +23,20 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
   * [Send Interactions to Thunderhead ONE or Salesforce Interaction Studio](#send-interactions-to-thunderhead-one-or-salesforce-interaction-studio)
-    + [Send Interaction](#send-interaction)
-    + [Send an Interaction Request and a callback](#send-an-interaction-request-and-a-callback)
+    + [Send an Interaction request](#send-an-interaction-request)
+    + [Send an Interaction request and a callback](#send-an-interaction-request-and-a-callback)
   * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
   * [Explicitly define a View as an Interaction](#explicitly-define-a-view-as-an-interaction)
   * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
-    + [Send properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
+    + [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
     + [Send Properties to an Interaction](#send-properties-to-an-interaction)
-    + [Send an Interaction request with properties](#send-an-interaction-request-with-properties)
-    + [Send an Interaction Request with properties and a callback](#send-an-interaction-request-with-properties-and-a-callback)
+    + [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
+    + [Send an Interaction request with Properties and a callback](#send-an-interaction-request-with-properties-and-a-callback)
     + [Send a response code](#send-a-response-code)
   * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
   * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
   * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
-    + [Send properties for a URL scheme](#send-properties-for-a-url-scheme)
+    + [Send Properties for a URL scheme](#send-properties-for-a-url-scheme)
     + [Append a ‘one-tid’ parameter to a `URL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-url-to-facilitate-identity-transfer)
     + [Append a ‘one-tid’ parameter to a `Uri` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-uri-to-facilitate-identity-transfer)
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
@@ -66,9 +59,6 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
 - [Questions or need help](#questions-or-need-help)
   * [Salesforce Interaction Studio Support](#salesforce-interaction-studio-support)
   * [Thunderhead ONE Support](#thunderhead-one-support)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ## Installation
 
@@ -382,7 +372,7 @@ You can set this back to false at any point to restart automatic Interaction det
 
 ### Send Interactions to Thunderhead ONE or Salesforce Interaction Studio
 
-#### Send Interaction
+#### Send an Interaction request
 You can send an Interaction request programmatically by calling the `sendInteraction` method and passing an Interaction path as a parameter as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
@@ -392,7 +382,7 @@ one.sendInteraction("/interactionPath");
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-#### Send an Interaction Request and a callback
+#### Send an Interaction request and a callback
 You can send an Interaction request programmatically and retrieve its response by calling the `sendInteraction` method with a callback. You need to pass an Interaction path and a callback to the method as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
@@ -406,14 +396,14 @@ one.sendInteraction("/interactionName", new GetCallback<ResponseObject>() {  pub
   }
 });
 ```
-The response can be passed to `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
+The response can be passed to `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
 
 *Note:* 
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Retrieve a response for an automatically triggered Interaction request 
-You can retrieve a response for an automatically triggered interaction request by registering for an interaction callback as shown below:
+You can retrieve a response for an automatically triggered Interaction request by registering for an Interaction callback as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
 one.registerInteractionCallback("/interactionName", new InteractionCallback() {  
@@ -423,7 +413,7 @@ one.registerInteractionCallback("/interactionName", new InteractionCallback() {
  }
 });
 ```
-The response can be passed to the `processResponse` method as shown above. By calling this method the response is returned to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
+The response can be passed to the `processResponse` method as shown above. By calling this method the response is returned to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
 
 *Note:* 
 - If you register to retrieve a response for an automatically triggered Interaction, you are responsible to unregister from this callback. You are advised to do this as soon as you no longer need this callback or under your activity or fragment’s `onStop` method.
@@ -483,25 +473,25 @@ private void showVariants() {
 }
 ```
 ### Send Properties to Thunderhead ONE or Salesforce Interaction Studio
-Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. Create a HashMap containing key/value pair strings, and call the appropriate properties public method, as follows:
+Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. Create a HashMap containing key/value pair strings, and call the appropriate Properties public method, as follows:
 ```java
 HashMap<String, String> propertiesMap = new HashMap<>();
 propertiesMap.put("key1", "value1");
 propertiesMap.put("key2", "value2");
 ```
 
-#### Send properties to a base Touchpoint
-To send properties to a base Touchpoint, call the following public method and pass in your `HashMap`:
+#### Send Properties to a base Touchpoint
+To send Properties to a base Touchpoint, call the following public method and pass in your `HashMap`:
 ```java
 One one = One.getInstance(getApplicationContext());
 one.sendBaseTouchpointProperties(propertiesMap);
 ```
 *Note:* 
 - This sends a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
-- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio. The capture point api name in Thunderhead ONE, or Salesforce Interaction Studio, would have to match your key name sent above.
+- Properties sent to a base Touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio. The capture point api name in Thunderhead ONE, or Salesforce Interaction Studio, would have to match your key name sent above.
 
 #### Send Properties to an Interaction
-To send properties to a specific Interaction, call the following public method, passing the Interaction path as a string together with your HashMap containing the said properties:
+To send Properties to a specific Interaction, call the following public method, passing the Interaction path as a string together with your HashMap containing the said Properties:
 
 ```java
 One one = One.getInstance(getApplicationContext());
@@ -511,8 +501,8 @@ one.sendProperties("/interactionPath", propertiesMap);
 - This sends a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-#### Send an Interaction request with properties
-You can send an Interaction request with properties by calling the `sendInteraction` method, and passing an Interaction path as a parameter and a `HashMap` containing the said properties, as shown below:
+#### Send an Interaction request with Properties
+You can send an Interaction request with Properties by calling the `sendInteraction` method, and passing an Interaction path as a parameter and a `HashMap` containing the said Properties, as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
 one.sendInteraction("/interactionPath", propertiesMap);
@@ -521,8 +511,8 @@ one.sendInteraction("/interactionPath", propertiesMap);
 - This sends a POST request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-#### Send an Interaction Request with properties and a callback
-You can send an Interaction request with properties and retrieve its response by calling corresponding `sendInteraction` method with a callback. You need to pass an Interaction path, a properties map and a callback to the method as shown below:
+#### Send an Interaction request with Properties and a callback
+You can send an Interaction request with Properties and retrieve its response by calling corresponding `sendInteraction` method with a callback. You need to pass an Interaction path, a Properties map and a callback to the method as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
 one.sendInteraction("/interactionName", propertiesMap, new GetCallback<ResponseObject>() {
@@ -536,14 +526,14 @@ one.sendInteraction("/interactionName", propertiesMap, new GetCallback<ResponseO
   }
 });
 ```
-The response can be passed to the `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
+The response can be passed to the `processResponse` method as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
 
 *Note:* 
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 #### Send a response code
-To send a response code, call `sendResponseCode` by passing the response code and the corresponding interaction path as parameters as shown below:
+To send a response code, call `sendResponseCode` by passing the response code and the corresponding Interaction path as parameters as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
 one.sendResponseCode("yourCode", "/interactionPath");
@@ -624,7 +614,7 @@ one.disableIdentityTransfer(true);
 *Note:* 
 - This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
-#### Send properties for a URL scheme
+#### Send Properties for a URL scheme
 
 If you have disabled automatic identity transfer, you can still send all URL parameters received as part of a deep link by calling the `handleURL` SDK public method and passing the URL as a parameter into it, as shown below:
 
