@@ -24,14 +24,14 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
   * [Send Interactions to Thunderhead ONE or Salesforce Interaction Studio](#send-interactions-to-thunderhead-one-or-salesforce-interaction-studio)
     + [Send an Interaction request](#send-an-interaction-request)
-    + [Send an Interaction request and a callback](#send-an-interaction-request-and-a-callback)
+    + [Send an Interaction request and retrieve the response](#send-an-interaction-request-and-retrieve-the-response)
   * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
   * [Explicitly define a View as an Interaction](#explicitly-define-a-view-as-an-interaction)
   * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
     + [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
     + [Send Properties to an Interaction](#send-properties-to-an-interaction)
     + [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
-    + [Send an Interaction request with Properties and a callback](#send-an-interaction-request-with-properties-and-a-callback)
+    + [Send an Interaction request with Properties and retrieve the response](#send-an-interaction-request-with-properties-and-retrieve-the-response)
     + [Send a response code](#send-a-response-code)
   * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
   * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
@@ -382,7 +382,7 @@ one.sendInteraction("/interactionPath");
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-#### Send an Interaction request and a callback
+#### Send an Interaction request and retrieve the response
 You can send an Interaction request programmatically and retrieve its response by calling the `sendInteraction` method with a callback. You need to pass an Interaction path and a callback to the method as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
@@ -511,7 +511,7 @@ one.sendInteraction("/interactionPath", propertiesMap);
 - This sends a POST request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-#### Send an Interaction request with Properties and a callback
+#### Send an Interaction request with Properties and retrieve the response
 You can send an Interaction request with Properties and retrieve its response by calling corresponding `sendInteraction` method with a callback. You need to pass an Interaction path, a Properties map and a callback to the method as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
