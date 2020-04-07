@@ -376,7 +376,9 @@ By disabling automatic Interaction detection, the SDK won’t automatically send
 
 You can set this back to false at any point to restart automatic Interaction detection.
 
-### Send an Interaction request programmatically 
+### Send Interactions to Thunderhead ONE or Salesforce Interaction Studio
+
+#### Send Interaction
 You can send an Interaction request programmatically by calling the `sendInteraction` method and passing an Interaction path as a parameter as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
@@ -386,7 +388,7 @@ one.sendInteraction("/interactionPath");
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Send an Interaction request programmatically and a callback
+#### Send an Interaction Request and a callback
 You can send an Interaction request programmatically and retrieve its response by calling the `sendInteraction` method with a callback. You need to pass an Interaction path and a callback to the method as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
