@@ -12,7 +12,7 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
 
 - [Installation](#installation)
   * [Manual installation](#manual-installation)
-    + [`build.gradle` examples](#-buildgradle-examples)
+    + [`build.gradle` examples](#buildgradle-examples)
       - [**Thunderhead ONE** `build.gradle` examples:](#--thunderhead-one----buildgradle--examples-)
         * [Example of the **top-level** `build.gradle` file after integration:](#example-of-the---top-level----buildgradle--file-after-integration-)
         * [Example of the **app-level** `build.gradle` file after integration:](#example-of-the---app-level----buildgradle--file-after-integration-)
