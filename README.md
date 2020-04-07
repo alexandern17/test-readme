@@ -12,15 +12,15 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
 
 - [Installation](#installation)
   * [Manual installation](#manual-installation)
-    + [`build.gradle` examples](#buildgradle-examples)
-      - [Thunderhead ONE `build.gradle` examples](#thunderhead-one-buildgradle-examples)
-        * [Example of the top-level `build.gradle` file after integration](#example-of-the-top-level-buildgradle-file-after-integration)
-        * [Example of the app-level `build.gradle` file after integration](#example-of-the-app-level-buildgradle-file-after-integration)
-      - [Salesforce Interaction Studio `build.gradle` examples](#salesforce-interaction-studio-buildgradle-examples)
-        * [Example of the top-level `build.gradle` file after integration](#example-of-the-top-level-buildgradle-file-after-integration-1)
-        * [Example of the app-level `build.gradle` file after integration](#example-of-the-app-level-buildgradle-file-after-integration-1)
+    + [`build.gradle` examples](#-buildgradle-examples)
+      - [Thunderhead ONE `build.gradle` examples:](#-thunderhead-one-buildgradle-examples-)
+        * [Example of the top-level `build.gradle` file after integration:](#example-of-the-top-level-buildgradle-file-after-integration-)
+        * [Example of the app-level `build.gradle` file after integration:](#example-of-the-app-level-buildgradle-file-after-integration-)
+      - [Salesforce Interaction Studio `build.gradle` examples:](#-salesforce-interaction-studio-buildgradle-examples-)
+        * [Example of the top-level `build.gradle` file after integration:](#example-of-the-top-level-buildgradle-file-after-integration-1)
+        * [Example of the app-level `build.gradle` file after integration:](#example-of-the-app-level-buildgradle-file-after-integration-1)
 - [Use the Codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
-  * [The Thunderhead Application Manifest File Permissions](#the-thunderhead-application-manifest-file-permissions)
+  * [The Thunderhead Application Manifest File Permissions:](#the-thunderhead-application-manifest-file-permissions-)
   * [Subclass your `Application` Class](#subclass-your-application-class)
   * [Initialize the SDK](#initialize-the-sdk)
     + [Set up the Framework in User mode](#set-up-the-framework-in-user-mode)
@@ -29,8 +29,9 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
-  * [Send an Interaction request programmatically](#send-an-interaction-request-programmatically)
-  * [Send an Interaction request programmatically and a callback](#send-an-interaction-request-programmatically-and-a-callback)
+  * [Send Interactions to Thunderhead ONE or Salesforce Interaction Studio](#send-interactions-to-thunderhead-one-or-salesforce-interaction-studio)
+    + [Send Interaction](#send-interaction)
+    + [Send an Interaction Request and a callback](#send-an-interaction-request-and-a-callback)
   * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
   * [Explicitly define a View as an Interaction](#explicitly-define-a-view-as-an-interaction)
   * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
@@ -65,6 +66,9 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
 - [Questions or need help](#questions-or-need-help)
   * [Salesforce Interaction Studio Support](#salesforce-interaction-studio-support)
   * [Thunderhead ONE Support](#thunderhead-one-support)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ## Installation
 
