@@ -1,5 +1,13 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
+The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
+
+**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
+for details on updating the required Gradle plugins.**
+
+**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java8 Migration guide](JAVA8-MIGRATION-GUIDE.md) for details
+on updating your app to be Java8 compatible in order to use the Thunderhead SDK.**
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -57,15 +65,6 @@
 - [Questions or need help](#questions-or-need-help)
   * [Salesforce Interaction Studio Support](#salesforce-interaction-studio-support)
   * [Thunderhead ONE Support](#thunderhead-one-support)
-
-
-The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
-
-**For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
-for details on updating the required Gradle plugins.**
-
-**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java8 Migration guide](JAVA8-MIGRATION-GUIDE.md) for details
-on updating your app to be Java8 compatible in order to use the Thunderhead SDK.**
 
 ## Installation
 
