@@ -30,7 +30,7 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
   * [Send an Interaction request programmatically](#send-an-interaction-request-programmatically)
-  * [Send an Interaction request programmatically](#send-an-interaction-request-programmatically-1)
+  * [Send an Interaction request programmatically and a callback](#send-an-interaction-request-programmatically-and-a-callback)
   * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
   * [Explicitly define a View as an Interaction](#explicitly-define-a-view-as-an-interaction)
   * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
@@ -386,7 +386,7 @@ one.sendInteraction("/interactionPath");
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Send an Interaction request programmatically 
+### Send an Interaction request programmatically and a callback
 You can send an Interaction request programmatically and retrieve its response by calling the `sendInteraction` method with a callback. You need to pass an Interaction path and a callback to the method as shown below:
 ```java
 One one = One.getInstance(getApplicationContext());
