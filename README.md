@@ -12,12 +12,12 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
 
 - [Installation](#installation)
   * [Manual installation](#manual-installation)
-- [Use the Codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
-  * [The Thunderhead Application Manifest File Permissions:](#the-thunderhead-application-manifest-file-permissions-)
+- [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
+  * [The Thunderhead Application Manifest File Permissions](#the-thunderhead-application-manifest-file-permissions)
   * [Subclass your `Application` Class](#subclass-your-application-class)
   * [Initialize the SDK](#initialize-the-sdk)
-    + [Set up the Framework in User mode](#set-up-the-framework-in-user-mode)
-    + [Set up the Framework in Admin mode](#set-up-the-framework-in-admin-mode)
+    + [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
+    + [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
   * [Exclude an Interaction](#exclude-an-interaction)
@@ -42,7 +42,7 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
   * [Enable push notifications](#enable-push-notifications)
-    + [Minimum Gradle Configuration](#minimum-gradle-configuration)
+    + [Minimum Gradle configuration](#minimum-gradle-configuration)
     + [Enable codeless push notification support programmatically](#enable-codeless-push-notification-support-programmatically)
       - [Configure Push Notifications With Multiple Push Message SDKs](#configure-push-notifications-with-multiple-push-message-sdks)
       - [Set a non adaptive fallback](#set-a-non-adaptive-fallback)
@@ -50,15 +50,15 @@ on updating your app to be Java8 compatible in order to use the Thunderhead SDK.
   * [Send a push token](#send-a-push-token)
   * [Send a location object](#send-a-location-object)
   * [Get Tid](#get-tid)
-  * [Access Debug Information](#access-debug-information)
+  * [Access debug information](#access-debug-information)
   * [Identify the framework version](#identify-the-framework-version)
   * [Clear the user profile](#clear-the-user-profile)
 - [Further integration details](#further-integration-details)
   * [How to disable the codeless identity transfer support](#how-to-disable-the-codeless-identity-transfer-support)
-- [Troubleshooting Guide](#troubleshooting-guide)
+- [Troubleshooting guide](#troubleshooting-guide)
 - [Questions or need help](#questions-or-need-help)
-  * [Salesforce Interaction Studio Support](#salesforce-interaction-studio-support)
-  * [Thunderhead ONE Support](#thunderhead-one-support)
+  * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
+  * [Thunderhead ONE support](#thunderhead-one-support)
 
 ## Installation
 
@@ -267,12 +267,12 @@ repositories {
 
 For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md).
 
-## Use the Codeless Thunderhead SDK for Android
+## Use the codeless Thunderhead SDK for Android
 Enable your app to automatically recognize **Interactions** by executing the following steps.
 
 * Developer note: Android Studio `Instant Run` is not supported at this time and must be disabled.
 
-### The Thunderhead Application Manifest File Permissions:
+### The Thunderhead Application Manifest File Permissions
 Included in the Thunderhead SDK's AndroidManifest.xml are the following permissions which will be merged with your applications AndroidManifest.xml:
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -290,7 +290,7 @@ Included in the Thunderhead SDK's AndroidManifest.xml are the following permissi
 If you haven’t done so already, you will need to subclass your `Application` class in order to be able to initialize the SDK. If you are just creating an `Application` subclass please remember to define it in your app manifest.
 
 ### Initialize the SDK
-#### Set up the Framework in User mode
+#### Set up the SDK in User mode
 To start tracking, capturing, and receiving optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
 With your parameters ready at hand, add the following lines of code under the Application’s subclass onCreate() method. You must ensure the initialization method is added after super.onCreate() is called.
@@ -317,7 +317,7 @@ public class YourApplication extends Application {
 ```
 *Note:* The User mode SDK build should be setup as part of your release build that is going to be uploaded to the Play Store.
 
-#### Set up the Framework in Admin mode
+#### Set up the SDK in Admin mode
 To use the framework in Admin mode, change the ONE mode to `ADMIN_MODE`, as follows:
 ``` java 
 one.init(siteKey, touchpointURI, apiKey, sharedSecret, userId, OneModes.ADMIN_MODE, hostName);
@@ -691,7 +691,7 @@ Pass the `URL` or `Uri`, which will send an Interaction request to `/one-click` 
 To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, Firebase Cloud Messaging (FCM) must be configured by following the FCM setup instructions. 
 At minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
 
-#### Minimum Gradle Configuration 
+#### Minimum Gradle configuration 
 To use the codeless push notifications functionality without using FCM directly, you need to at least have the `google-services` plugin applied to your app build.gradle: 
 
 1. Add the Google Services Plugin to your classpath in the top-level build.gradle file, located in the root project directory, as shown below:
@@ -878,7 +878,7 @@ one.getTid();
 - This will return the `tid` assigned to the current user as a `String`.
 - Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE, or Salesforce Interaction Studio, or if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
 
-### Access Debug Information
+### Access debug information
 
 The Thunderhead SDK for Android provides 4 distinct debugging levels, that can be enabled once the SDK has been initialized, as shown below:
 
@@ -947,13 +947,13 @@ classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
 ```
 
-## Troubleshooting Guide
-[Troubleshooting Guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
+## Troubleshooting guide
+[Troubleshooting guide](GITHUB-TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
-### Salesforce Interaction Studio Support
+### Salesforce Interaction Studio support
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
-### Thunderhead ONE Support
+### Thunderhead ONE support
 _The Thunderhead team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
