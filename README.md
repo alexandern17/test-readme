@@ -5,8 +5,8 @@ The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradl
 **For _migrating_ from version(s) <= 3.0.0 to version(s) 4.0.0+ of the Thunderhead SDK, please see the [plugin migration guide](ORCHESTRATION-PLUGIN-MIGRATION.md) 
 for details on updating the required Gradle plugins.**
 
-**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java8 Migration guide](JAVA8-MIGRATION-GUIDE.md) for details
-on updating your app to be Java8 compatible in order to use the Thunderhead SDK.**
+**For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Java 8 Migration guide](JAVA8-MIGRATION-GUIDE.md) for details
+on updating your app to be Java 8 compatible in order to use the Thunderhead SDK.**
 
 **For _migrating_ from version(s) < 5.0.0 of the Thunderhead SDK to version(s) 5.0.0+, please see the [Version 5 Migration guide](MIGRATION-VERSION-5.md) for details
 on updating your existing SDK configuration.**
@@ -16,72 +16,85 @@ on updating your existing SDK configuration.**
 ### Manual installation
 
 Requires Gradle 5.2.1+
+
 1. Open your existing Android application in Android Studio.
 2. Include the Thunderhead SDK as a dependency into your project:
-    + Navigate to your **app-level** build.gradle file.
-    + Add the following, under the dependencies section:
-        + For **Thunderhead ONE** integrations:
-        
-        ```gradle
-        dependencies {     
-          implementation "com.thunderhead.android:one-sdk:6.0.0"
-        }
-        ```
-        
-        + For **Salesforce Interaction Studio** integrations:
-        
-        ```gradle
-        dependencies {     
-          implementation "com.thunderhead.android:is-sdk:6.0.0"
-        }
-        ```
++ Navigate to your **app-level** build.gradle file.
++ Add the following, under the dependencies section:
+    + For **Thunderhead ONE** integrations:
+
+    ```gradle
+    dependencies {     
+      implementation "com.thunderhead.android:one-sdk:6.0.0"
+    }
+    ```
+    
+    + For **Salesforce Interaction Studio** integrations:
+    
+    ```gradle
+    dependencies {     
+      implementation "com.thunderhead.android:is-sdk:6.0.0"
+    }
+    ```
+
 3. Add the Thunderhead SDK configuration within the same **app-level** `build.gradle` file. 
-    + Add `RenderScript` support under the `defaultConfig` section:
-        ```gradle
-        defaultConfig {
-           renderscriptTargetApi 22
-           renderscriptSupportModeEnabled true
-        }
-        ```
-    + Add the following, under the repositories section:
-    ``` gradle 
-    repositories {
-      maven {
-       url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
-      }
-    }
-    ```
-    + Append the following configuration, for **Thunderhead ONE** and **Salesforce Interaction Studio** integrations: 
-    ``` gradle 
-    apply plugin: 'com.thunderhead.android.orchestration-plugin'
-    ```
-		
-4. Add Java8 Support
-    + Add the following, under the `android` section
-    ```groovy
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
-    ```
+
++ Add `RenderScript` support under the `defaultConfig` section:
+
+```gradle
+defaultConfig {
+   renderscriptTargetApi 22
+   renderscriptSupportModeEnabled true
+}
+```
+
++ Add the following, under the repositories section:
+
+``` gradle 
+repositories {
+  maven {
+   url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
+  }
+}
+```
+
++ Append the following configuration, for **Thunderhead ONE** and **Salesforce Interaction Studio** integrations: 
+
+``` gradle 
+apply plugin: 'com.thunderhead.android.orchestration-plugin'
+```
+	
+4. Add Java 8 Support
+
++ Add the following, under the `android` section
+
+```groovy
+compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+}
+```
+
 5. Update your `build.gradle` to add codeless identity transfer support.
-    + Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
-    ``` gradle 
-    buildscript {
-        repositories {
-            google()
-            jcenter()
-            maven {
-                name 'Thunderhead'
-                url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
-            }
-        }
-        dependencies {
-            classpath 'com.android.tools.build:gradle:3.4.2'
-            classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
+
++ Navigate to the **top-level** `build.gradle` file and add a maven repository url and class path dependencies as shown below:
+
+``` gradle 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            name 'Thunderhead'
+            url 'https://thunderhead.mycloudrepo.io/public/repositories/one-sdk-android'
         }
     }
-    ```
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.thunderhead.android:orchestration-plugin:1.0.0'
+    }
+}
+```
 
 ####  `build.gradle` examples
 
@@ -237,9 +250,9 @@ Included in the Thunderhead SDK's AndroidManifest.xml are the following permissi
 *Note:* 
 - The `SYSTEM_ALERT_WINDOW` permission is only needed for Admin mode builds. In your setup you can add this as a flavor specific permission to avoid having to show this as a permission change to your Play Store users.
 - You can remove this permission in User mode builds by adding the following to your manifest: 
-    ```xml 
-        <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
-    ```
+```xml 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" tools:node="remove" />
+```
 
 ### Configure and reconfigure the SDK
 
@@ -293,7 +306,8 @@ class YourApplication : Application() {
 }
 ```
 
-``` java 
+Java: 
+```java 
 import com.thunderhead.android.api.configuration.OneConfiguration;
 import com.thunderhead.One;
 import com.thunderhead.OneModes;
@@ -354,7 +368,8 @@ oneConfigureOptOut {
 }
 ```
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.optout.OneOptOutConfiguration;
 
@@ -385,7 +400,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 
-```java
+Java: 
+``` java
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
@@ -411,7 +427,8 @@ oneConfigureCodelessInteractionTracking {
 }
 ```
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
 
@@ -477,18 +494,19 @@ scope.launch {
 You can send an Interaction request programmatically and ignore the response
 by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
 
-```java
-    import com.thunderhead.One;
-    import com.thunderhead.android.api.interactions.OneCall;
-    import com.thunderhead.android.api.interactions.OneInteractionPath;
-    import com.thunderhead.android.api.interactions.OneRequest;
-    // rest of imports
+Java: 
+``` java
+import com.thunderhead.One;
+import com.thunderhead.android.api.interactions.OneCall;
+import com.thunderhead.android.api.interactions.OneInteractionPath;
+import com.thunderhead.android.api.interactions.OneRequest;
+// rest of imports
 
-    final OneRequest sendInteractionRequest = new OneRequest.Builder()
-            .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
-            .build();
-    final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
-    sendInteractionCall.enqueue(null);
+final OneRequest sendInteractionRequest = new OneRequest.Builder()
+        .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
+        .build();
+final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
+sendInteractionCall.enqueue(null);
 ```
 
 *Note:* 
@@ -542,37 +560,37 @@ scope.launch {
 You can send an Interaction request programmatically and process the response
 by calling the `One.sendInteraction` Java method and enqueue with a callback as shown below:
 
-```java
+Java: 
+``` java
+import com.thunderhead.One;
+import com.thunderhead.android.api.interactions.OneCall;
+import com.thunderhead.android.api.interactions.OneCallback;
+import com.thunderhead.android.api.interactions.OneInteractionPath;
+import com.thunderhead.android.api.interactions.OneRequest;
+// rest of imports
 
-    import com.thunderhead.One;
-    import com.thunderhead.android.api.interactions.OneCall;
-    import com.thunderhead.android.api.interactions.OneCallback;
-    import com.thunderhead.android.api.interactions.OneInteractionPath;
-    import com.thunderhead.android.api.interactions.OneRequest;
-    // rest of imports
+final OneRequest sendInteractionRequest = new OneRequest.Builder()
+        .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
+        .build();
 
-    final OneRequest sendInteractionRequest = new OneRequest.Builder()
-            .interactionPath(new OneInteractionPath(URI.create("/interactionPath")))
-            .build();
+final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
 
-    final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
+sendInteractionCall.enqueue(new OneCallback() {
+    @Override
+    public void onSuccess(@NotNull OneResponse response) {
+        One.processResponse(response);
+    }
 
-    sendInteractionCall.enqueue(new OneCallback() {
-        @Override
-        public void onSuccess(@NotNull OneResponse response) {
-            One.processResponse(response);
-        }
+    @Override
+    public void onError(@NotNull OneSDKError error) {
+        Log.e(TAG, "SDK Error: " +  error.getErrorMessage());
+    }
 
-        @Override
-        public void onError(@NotNull OneSDKError error) {
-            Log.e(TAG, "SDK Error: " +  error.getErrorMessage());
-        }
-
-        @Override
-        public void onFailure(@NotNull OneAPIError error) {
-            Log.e(TAG, "Api Error: " +  error.getErrorMessage());
-        }
-    });
+    @Override
+    public void onFailure(@NotNull OneAPIError error) {
+        Log.e(TAG, "Api Error: " +  error.getErrorMessage());
+    }
+});
 ```
 
 The response can be passed to `One.processResponse` method as shown above. This method returns the response 
@@ -631,7 +649,8 @@ scope.launch {
 You can send an Interaction request programmatically with Properties and ignore the response
 by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneCall;
 import com.thunderhead.android.api.interactions.OneInteractionPath;
@@ -694,7 +713,8 @@ scope.launch {
 You can send Properties programmatically and ignore the response
 by calling the `One.sendProperties` Java method and enqueue with a null callback as shown below:
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneCall;
 import com.thunderhead.android.api.interactions.OneRequest;
@@ -761,7 +781,8 @@ scope.launch {
 To send a response code, call the `One.sendResponseCode` Java method with the response code
 and the corresponding interaction path as parameters as shown below:
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneResponseCodeRequest;
 import com.thunderhead.android.api.interactions.OneInteractionPath;
@@ -804,7 +825,8 @@ oneSetAutomaticInteractionCallback(OneInteractionPath(URI("https://server.com"))
 }
 ```
 
-```java
+Java: 
+``` java
 One.setAutomaticInteractionCallback(new OneInteractionPath(URI.create(TestConstants.test_triggered_interaction_1)), new OneCallback() {
     @Override
     public void onFailure(@NotNull OneAPIError error) {
@@ -838,7 +860,8 @@ protected fun onStop() {
 }
 ```
 
-```java
+Java: 
+``` java
 protected void onStop() {
     super.onStop();
     One.removeAutomaticInteractionCallback(new OneInteractionPath(URI.create(TestConstants.test_triggered_interaction_1)));
@@ -858,7 +881,8 @@ findViewById<LinearLayout>(R.id.linear_layout)
     .assignInteractionPath(OneInteractionPath(URI("/viewAsInteraction")))
 ```
 
-```java
+Java: 
+``` java
 LinearLayout linearLayout = findViewById<LinearLayout>(R.id.linear_layout);
 final OneInteractionPathAssignment oneInteractionPathAssignment = new OneInteractionPathAssignment.Builder()
         .view(linearLayout)
@@ -890,7 +914,8 @@ class LocationsList : ListActivity(), GISDataPresenter {
 }
 ```
 
-```java
+Java: 
+``` java
 public class LocationsList extends ListActivity implements GISDataPresenter {
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -947,7 +972,8 @@ private fun showVariants() {
 }
 ```
 
-```java
+Java: 
+``` java
 private void showVariants() {
     if (variantsView == null) {
         variantsView = inflater.inflate(R.layout.variants_slide, mainPaneView, false);
@@ -1045,7 +1071,8 @@ val blackList = setOf(URI("*.wikipedia.org"))
 val blackList = oneGetIdentityTransferLinksBlackList()
 ```
 
-```java
+Java: 
+``` java
 // This example shows how to blacklist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
@@ -1091,7 +1118,8 @@ oneConfigureIdentityTransfer {
 }
 ```
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.identitytransfer.OneIdentityTransferConfiguration;
 
@@ -1105,7 +1133,7 @@ One.setIdentityTransferConfiguration(identityTranserConfiguration);
 *Note:* 
 - This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a `one-tid` as a `URL` query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
-#### Send Deep Link Properties programmatically
+#### Send deep link properties programmatically
 
 If you have disabled automatic identity transfer, you can still send all `URL` parameters received as part of a deep link by calling the `java.net.URI.processDeepLink` or `android.net.Uri.processDeepLink` Kotlin extension function or the `One.processDeepLink` Java method as shown below:
 
@@ -1117,7 +1145,8 @@ URI("myapp://MainActivity?customerKey=1").processDeepLink()
 Uri.parse("myapp://MainActivity?customerKey=1").processDeepLink()
 ```
 
-```java
+Java: 
+``` java
 One.processDeepLink(URI.create("myapp://MainActivity?customerKey=1"));
 ```
 
@@ -1135,7 +1164,8 @@ import com.thunderhead.android.api.createUrlWithTid
 val urlWithOneTid = URL("http://mysite.com").createUrlWithTid()
 ```
 
-```java
+Java: 
+``` java
 URL url = new URL("http://mysite.com");
 URL urlWithOneTid = One.createUrlWithTid(url);
 ```
@@ -1156,7 +1186,8 @@ val androidUriWithOneTid = Uri.parse("http://mysite.com").createUriWithTid()
 val javaUriWithOneTid = URI("http://mysite.com").createUriWithTid()
 ```
 
-```java
+Java: 
+``` java
 Uri uri = Uri.parse("http://mysite.com");
 Uri uriWithOneTid = One.createUriWithTid(uri);
 
@@ -1182,7 +1213,8 @@ oneConfigureCodelessInteractionTracking {
 }
 ```
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
 
@@ -1208,7 +1240,8 @@ URL("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
 ```
 
 
-```java
+Java: 
+``` java
 // URL example
 try {
     One.sendInteractionForOutboundLink(new URL("https://www.yourfullurl.com/"));
@@ -1277,7 +1310,8 @@ oneConfigureMessaging {
 }
 ```
   
-```java  
+Java: 
+``` java  
 import com.thunderhead.One;
 import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
 
@@ -1367,7 +1401,8 @@ oneConfigureMessaging {
 }
 ```
 
-```java
+Java: 
+``` java
 import com.thunderhead.One;
 import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
 
