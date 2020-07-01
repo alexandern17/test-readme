@@ -276,7 +276,7 @@ You can find your Thunderhead API parameters on the Thunderhead ONE website or i
 With your parameters ready at hand, configure the SDK. We recommend adding the following lines of code for User Mode under the Application’s subclass `onCreate()` method though this is not required. 
 You must ensure the `oneConfigure` top-level Kotlin function or `setConfiguration` Java method is invoked after `super.onCreate()` is called.
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigure
 import com.thunderhead.OneModes;
@@ -361,7 +361,7 @@ Follow any of the steps below to access further functions of the SDK.
 To opt an end-user out of tracking when the end-user does not give permission to be tracked in the client app, 
 call the `oneConfigureOptOut` top-level Kotlin function or the `One.setOptOutConfiguration` Java method as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigureOptOut
 
@@ -370,8 +370,8 @@ oneConfigureOptOut {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.optout.OneOptOutConfiguration;
 
@@ -391,7 +391,7 @@ One.setOptOutConfiguration(optOutConfiguration);
 
 You can exclude a specific view from being automatically recognized as an Interaction by using the `excludeAutomaticInteraction` Kotlin extension function or `One.excludeAutomaticInteraction` Java method in an Activity's `onCreate` method or a Fragment's `onCreateView`, as shown below. 
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.excludeAutomaticInteraction
 // rest of imports
@@ -403,8 +403,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
@@ -422,7 +422,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 You can disable automatic Interaction detection by calling the `oneConfigureCodelessInteractionTracking` Kotlin top-level function
 or the `One.setCodelessInteractionTrackingConfiguration` Java method with the appropriate configuration, as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigureCodelessInteractionTracking
 
@@ -431,8 +431,8 @@ oneConfigureCodelessInteractionTracking {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
 
@@ -461,7 +461,7 @@ while the `One.sendInteraction` Java method follows a Call/Request/Response mode
 You can send an Interaction request programmatically and ignore the response 
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -476,7 +476,7 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -500,8 +500,8 @@ scope.launch {
 You can send an Interaction request programmatically and ignore the response
 by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneCall;
 import com.thunderhead.android.api.interactions.OneInteractionPath;
@@ -525,7 +525,7 @@ will be used by the SDK - all other response objects will be ignored.
 You can send an Interaction request programmatically and process the response
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -542,7 +542,7 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -568,8 +568,8 @@ scope.launch {
 You can send an Interaction request programmatically and process the response
 by calling the `One.sendInteraction` Java method and enqueue with a callback as shown below:
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneCall;
 import com.thunderhead.android.api.interactions.OneCallback;
@@ -618,7 +618,7 @@ or Salesforce Interaction Studio using the SDK's public methods.
 You can send an Interaction request programmatically with Properties and ignore the response
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -634,7 +634,7 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -659,8 +659,8 @@ scope.launch {
 You can send an Interaction request programmatically with Properties and ignore the response
 by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneCall;
 import com.thunderhead.android.api.interactions.OneInteractionPath;
@@ -686,7 +686,7 @@ sendInteractionCall.enqueue(null);
 You can send Properties programmatically and ignore the response
 by calling the `oneSendProperties` Kotlin top-level function in a Coroutine as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendProperties
@@ -701,7 +701,7 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendProperties
@@ -725,8 +725,8 @@ scope.launch {
 You can send Properties programmatically and ignore the response
 by calling the `One.sendProperties` Java method and enqueue with a null callback as shown below:
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneCall;
 import com.thunderhead.android.api.interactions.OneRequest;
@@ -754,7 +754,7 @@ sendPropertiesCall.enqueue(null);
 To send a response code, call the `oneSendResponseCode` Kotlin top-level function with the response code 
 and the corresponding Interaction path as parameters as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendResponseCode
@@ -770,7 +770,7 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendResponseCode
@@ -795,8 +795,8 @@ scope.launch {
 To send a response code, call the `One.sendResponseCode` Java method with the response code
 and the corresponding interaction path as parameters as shown below:
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.interactions.OneResponseCodeRequest;
 import com.thunderhead.android.api.interactions.OneInteractionPath;
@@ -818,7 +818,7 @@ One.sendResponseCode(responseCodeRequest).enqueue(null);
 
 You can retrieve a response for an automatically triggered Interaction request by setting an Interaction callback as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneSetAutomaticInteractionCallback
 import com.thunderhead.android.api.interactions.OneInteractionPath
@@ -840,8 +840,8 @@ oneSetAutomaticInteractionCallback(OneInteractionPath(URI("https://server.com"))
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 One.setAutomaticInteractionCallback(new OneInteractionPath(URI.create(TestConstants.test_triggered_interaction_1)), new OneCallback() {
     @Override
     public void onFailure(@NotNull OneAPIError error) {
@@ -865,7 +865,7 @@ The response can be passed to the `processResponse` method as shown above. By ca
 *Note:* 
 - If you set a callback for an automatically triggered Interaction, you are responsible to remove this callback. You are advised to do this as soon as you no longer need this callback or under your activity or fragment’s `onStop` method.
 
-Kotlin 
+`Kotlin`
 ```kotlin   
 import com.thunderhead.android.api.oneRemoveAutomaticInteractionCallback
 import com.thunderhead.android.api.interactions.OneInteractionPath
@@ -876,8 +876,8 @@ protected fun onStop() {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 protected void onStop() {
     super.onStop();
     One.removeAutomaticInteractionCallback(new OneInteractionPath(URI.create(TestConstants.test_triggered_interaction_1)));
@@ -889,7 +889,7 @@ protected void onStop() {
 You can explicitly define a view as an Interaction by calling the `assignInteractionPath` Kotlin extension function
 or the `One.assignInteractionPath` Java method with a valid desired Interaction path, as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.assignInteractionPath
 import com.thunderhead.android.api.interactions.OneInteractionPath
@@ -898,8 +898,8 @@ findViewById<LinearLayout>(R.id.linear_layout)
     .assignInteractionPath(OneInteractionPath(URI("/viewAsInteraction")))
 ```
 
-Java 
-``` java
+`Java`
+```java
 LinearLayout linearLayout = findViewById<LinearLayout>(R.id.linear_layout);
 final OneInteractionPathAssignment oneInteractionPathAssignment = new OneInteractionPathAssignment.Builder()
         .view(linearLayout)
@@ -913,7 +913,7 @@ This could be useful in the following cases:
 1. If an activity with the same layout implements generic functionality and is used to represent various Interactions within the same application. 
 For example it could be a list view, which is being reused across the application to display branch locations in one use case and cash point locations in a second use case.
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.assignInteractionPath
 import com.thunderhead.android.api.interactions.OneInteractionPath
@@ -932,8 +932,8 @@ class LocationsList : ListActivity(), GISDataPresenter {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 public class LocationsList extends ListActivity implements GISDataPresenter {
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -977,7 +977,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 
 3. If an Interaction is represented by a custom view.
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.assignInteractionPath
 import com.thunderhead.android.api.interactions.OneInteractionPath
@@ -991,8 +991,8 @@ private fun showVariants() {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 private void showVariants() {
     if (variantsView == null) {
         variantsView = inflater.inflate(R.layout.variants_slide, mainPaneView, false);
@@ -1011,7 +1011,7 @@ private void showVariants() {
 
 The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the `java.net.URI.setIdentityTransferLinksWhiteList` Kotlin extension function or `whitelistIdentityTransferLinks` Java method as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.setIdentityTransferLinksWhiteList
 // rest of imports
@@ -1070,7 +1070,7 @@ HashSet<URI> whitelist = One.getIdentityTransferLinksWhiteList()
 
 The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the `java.net.URI.setIdentityTransferLinksBlackList` Kotlin extension function or `blacklistIdentityTransferLinks` Java method as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.setIdentityTransferLinksBlackList
 // rest of imports
@@ -1092,8 +1092,8 @@ val blackList = setOf(URI("*.wikipedia.org"))
 val blackList = oneGetIdentityTransferLinksBlackList()
 ```
 
-Java 
-``` java
+`Java`
+```java
 // This example shows how to blacklist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
@@ -1131,7 +1131,7 @@ HashSet<URI> blacklist = One.getIdentityTransferLinksBlackList()
 If the Orchestration Plugin was enabled, the SDK adds a `one-tid` as a `URL` query parameter to web links opened in `WebView`, `CustomTabs` and external browsers (via `Intent`). 
 To disable this functionality, call the `oneConfigureIdentityTransfer` Kotlin top-level function or the `One.setIdentityTransferConfiguration` Java method as shown below:  
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigureIdentityTransfer
 
@@ -1140,8 +1140,8 @@ oneConfigureIdentityTransfer {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.identitytransfer.OneIdentityTransferConfiguration;
 
@@ -1159,7 +1159,7 @@ One.setIdentityTransferConfiguration(identityTranserConfiguration);
 
 If you have disabled automatic identity transfer, you can still send all `URL` parameters received as part of a deep link by calling the `java.net.URI.processDeepLink` or `android.net.Uri.processDeepLink` Kotlin extension function or the `One.processDeepLink` Java method as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.processDeepLink
 // rest of imports
@@ -1168,8 +1168,8 @@ URI("myapp://MainActivity?customerKey=1").processDeepLink()
 Uri.parse("myapp://MainActivity?customerKey=1").processDeepLink()
 ```
 
-Java 
-``` java
+`Java`
+```java
 One.processDeepLink(URI.create("myapp://MainActivity?customerKey=1"));
 ```
 
@@ -1180,7 +1180,7 @@ One.processDeepLink(URI.create("myapp://MainActivity?customerKey=1"));
 
 If you have disabled automatic identity transfer, you can still create a `URL` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URL.createUrlWithTid()` Kotlin extension function or the `One.createUrlWithTid(URL)` Java method as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.createUrlWithTid
 // rest of imports
@@ -1188,8 +1188,8 @@ import com.thunderhead.android.api.createUrlWithTid
 val urlWithOneTid = URL("http://mysite.com").createUrlWithTid()
 ```
 
-Java 
-``` java
+`Java`
+```java
 URL url = new URL("http://mysite.com");
 URL urlWithOneTid = One.createUrlWithTid(url);
 ```
@@ -1202,7 +1202,7 @@ Once you have the `urlWithOneTid`, pass this into the method which handles the o
 
 If you have disabled automatic identity transfer, you can still create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URI.createUriWithTid()` or `android.net.Uri.createUriWithTid()` Kotlin extension functions or the `One.createUriWithTid(Uri|URI)` Java method as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.createUriWithTid
 // rest of imports
@@ -1211,8 +1211,8 @@ val androidUriWithOneTid = Uri.parse("http://mysite.com").createUriWithTid()
 val javaUriWithOneTid = URI("http://mysite.com").createUriWithTid()
 ```
 
-Java 
-``` java
+`Java`
+```java
 Uri uri = Uri.parse("http://mysite.com");
 Uri uriWithOneTid = One.createUriWithTid(uri);
 
@@ -1230,7 +1230,7 @@ If the Orchestration Plugin was enabled, the SDK will automatically send an Inte
 
 To disable this functionality use the code below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigureCodelessInteractionTracking
 
@@ -1239,8 +1239,8 @@ oneConfigureCodelessInteractionTracking {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.codeless.OneCodelessInteractionTrackingConfiguration;
 
@@ -1256,7 +1256,7 @@ One.setCodelessInteractionTrackingConfiguration(codelessInteractionTrackingConfi
 
 If you have disabled automatic outbound link tracking, you can still track a `URL` or `Uri`, by calling the `java.net.URI.sendInteractionForOutboundLink` or `android.net.Uri.sendInteractionForOutboundLink` Kotlin extension functions or the `One.sendInteractionForOutboundLink` Java method as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.sendInteractionForOutboundLink
 
@@ -1267,8 +1267,8 @@ URL("https://www.yourfullurl.com/").sendInteractionForOutboundLink()
 ```
 
 
-Java 
-``` java
+`Java`
+```java
 // URL example
 try {
     One.sendInteractionForOutboundLink(new URL("https://www.yourfullurl.com/"));
@@ -1329,7 +1329,7 @@ apply plugin: 'com.google.gms.google-services'
 
 For Firebase Cloud Messaging, simply enable push notifications as shown below:
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigureMessaging
 
@@ -1338,8 +1338,8 @@ oneConfigureMessaging {
 }
 ```
   
-Java 
-``` java  
+`Java`
+```java  
 import com.thunderhead.One;
 import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
 
@@ -1420,7 +1420,7 @@ The Thunderhead SDK will warn you at init if the icon has not been set by loggin
 
 Here is an example of setting the fallback for Api 26 devices using the built in Android "Star On" non adaptive drawable.  *Important: The icon set must not be adaptive!*
 
-Kotlin 
+`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.oneConfigureMessaging
 
@@ -1430,8 +1430,8 @@ oneConfigureMessaging {
 }
 ```
 
-Java 
-``` java
+`Java`
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
 
