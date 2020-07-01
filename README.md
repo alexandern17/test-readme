@@ -307,7 +307,7 @@ class YourApplication : Application() {
 }
 ```
 
-Java: 
+`Java`
 ```java 
 import com.thunderhead.android.api.configuration.OneConfiguration;
 import com.thunderhead.One;
@@ -476,7 +476,6 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -542,7 +541,6 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -634,7 +632,6 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendInteraction
@@ -701,7 +698,6 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendProperties
@@ -770,7 +766,6 @@ scope.launch {
 
 To capture errors, you can set the `throwErrors` parameter to `true` and wrap the method in a `try/catch` block, as shown below:
 
-`Kotlin`
 ```kotlin
 import com.thunderhead.android.api.interactions.OneInteractionPath
 import com.thunderhead.android.api.oneSendResponseCode
@@ -1033,6 +1028,7 @@ val whiteList = setOf(URI("*.wikipedia.org"))
 val whitelist = oneGetIdentityTransferLinksWhiteList()
 ```
 
+`Java`
 ```java
 // This example shows how to whitelist links under specific domain names
 // www.google.com and www.uber.com. For example,
@@ -1339,7 +1335,7 @@ oneConfigureMessaging {
 ```
   
 `Java`
-```java  
+```java
 import com.thunderhead.One;
 import com.thunderhead.android.api.messaging.OneMessagingConfiguration;
 
