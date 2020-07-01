@@ -13,17 +13,18 @@ on updating your existing SDK configuration.**
 
 ## Table of Contents
 
+* [Table of contents](#table-of-contents)
 * [Installation](#installation)
  * [Manual installation](#manual-installation)
     * [build.gradle examples](#buildgradle-examples)
-       * [<strong>Thunderhead ONE</strong> build.gradle examples:](#thunderhead-one-buildgradle-examples)
-          * [Example of the <strong>top-level</strong> build.gradle file after integration:](#example-of-the-top-level-buildgradle-file-after-integration)
-          * [Example of the <strong>app-level</strong> build.gradle file after integration:](#example-of-the-app-level-buildgradle-file-after-integration)
-       * [<strong>Salesforce Interaction Studio</strong> build.gradle examples:](#salesforce-interaction-studio-buildgradle-examples)
-          * [Example of the <strong>top-level</strong> build.gradle file after integration:](#example-of-the-top-level-buildgradle-file-after-integration-1)
-          * [Example of the <strong>app-level</strong> build.gradle file after integration:](#example-of-the-app-level-buildgradle-file-after-integration-1)
-* [Use the Codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
- * [The Thunderhead Application Manifest File Permissions:](#the-thunderhead-application-manifest-file-permissions)
+       * [<strong>Thunderhead ONE</strong> build.gradle examples](#thunderhead-one-buildgradle-examples)
+          * [Example of the <strong>top-level</strong> build.gradle file after integration](#example-of-the-top-level-buildgradle-file-after-integration)
+          * [Example of the <strong>app-level</strong> build.gradle file after integration](#example-of-the-app-level-buildgradle-file-after-integration)
+       * [<strong>Salesforce Interaction Studio</strong> build.gradle examples](#salesforce-interaction-studio-buildgradle-examples)
+          * [Example of the <strong>top-level</strong> build.gradle file after integration](#example-of-the-top-level-buildgradle-file-after-integration-1)
+          * [Example of the <strong>app-level</strong> build.gradle file after integration](#example-of-the-app-level-buildgradle-file-after-integration-1)
+* [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
+ * [The Thunderhead Application Manifest file permissions](#the-thunderhead-application-manifest-file-permissions)
  * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
     * [SDK initialization not required](#sdk-initialization-not-required)
     * [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
@@ -46,19 +47,19 @@ on updating your existing SDK configuration.**
  * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
     * [Send deep link properties programmatically](#send-deep-link-properties-programmatically)
     * [Create a URL with a one-tid parameter to facilitate identity transfer](#create-a-url-with-a-one-tid-parameter-to-facilitate-identity-transfer)
-    * [Create a android.net.Uri or java.net.URI with a one-tid parameter to facilitate identity transfer](#create-a-androidneturi-or-javaneturi-with-a-one-tid-parameter-to-facilitate-identity-transfer)
+    * [Create an android.net.Uri or java.net.URI with a one-tid parameter to facilitate identity transfer](#create-a-androidneturi-or-javaneturi-with-a-one-tid-parameter-to-facilitate-identity-transfer)
  * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     * [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
  * [Enable push notifications](#enable-push-notifications)
     * [Minimum Gradle configuration](#minimum-gradle-configuration)
     * [Enable codeless push notification support programmatically](#enable-codeless-push-notification-support-programmatically)
        * [Configure push notifications with multiple push message SDKs](#configure-push-notifications-with-multiple-push-message-sdks)
-       * [Set a non adaptive fallback.](#set-a-non-adaptive-fallback)
+       * [Set a non adaptive fallback](#set-a-non-adaptive-fallback)
  * [Get a push token](#get-a-push-token)
  * [Send a push token](#send-a-push-token)
  * [Send a location object](#send-a-location-object)
  * [Get Tid](#get-tid)
- * [Access Debug Information](#access-debug-information)
+ * [Access debug information](#access-debug-information)
  * [Identify the SDK version](#identify-the-sdk-version)
  * [Clear the user profile](#clear-the-user-profile)
 * [Further integration details](#further-integration-details)
@@ -66,7 +67,7 @@ on updating your existing SDK configuration.**
 * [Troubleshooting guide](#troubleshooting-guide)
 * [Questions or need help](#questions-or-need-help)
  * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
- * [Thunderhead ONE support](#thunderhead-one-support)
+ * [Thunderhead ONE support](#thunderhead-one-support)  
 
 ## Installation
 
@@ -115,7 +116,7 @@ repositories {
 }
 ```
 
-+ Append the following configuration, for **Thunderhead ONE** and **Salesforce Interaction Studio** integrations: 
++ Append the following configuration, for **Thunderhead ONE** and **Salesforce Interaction Studio** integrations:
 
 ``` gradle 
 apply plugin: 'com.thunderhead.android.orchestration-plugin'
@@ -155,9 +156,9 @@ buildscript {
 
 ####  `build.gradle` examples
 
-#####  **Thunderhead ONE** `build.gradle` examples:
+#####  **Thunderhead ONE** `build.gradle` examples
 
-###### Example of the **top-level** `build.gradle` file after integration:
+###### Example of the **top-level** `build.gradle` file after integration
 
 ``` gradle
 buildscript {
@@ -184,7 +185,7 @@ allprojects {
 }
 ```
 
-###### Example of the **app-level** `build.gradle` file after integration:
+###### Example of the **app-level** `build.gradle` file after integration
 
 ``` gradle
 apply plugin: 'com.android.application'
@@ -222,9 +223,9 @@ repositories {
 
 ```
 
-#####  **Salesforce Interaction Studio** `build.gradle` examples:
+#####  **Salesforce Interaction Studio** `build.gradle` examples
 
-###### Example of the **top-level** `build.gradle` file after integration:
+###### Example of the **top-level** `build.gradle` file after integration
 
 ``` gradle
 buildscript {
@@ -251,7 +252,7 @@ allprojects {
 }
 ```
 
-###### Example of the **app-level** `build.gradle` file after integration:
+###### Example of the **app-level** `build.gradle` file after integration
 
 ``` gradle
 apply plugin: 'com.android.application'
@@ -290,13 +291,13 @@ repositories {
 
 For further documentation on the `orchestration-plugin` please see the [reference docs](ORCHESTRATION-PLUGIN-README.md).
 
-## Use the Codeless Thunderhead SDK for Android
+## Use the codeless Thunderhead SDK for Android
 
 Enable your app to automatically recognize **Interactions** by executing the following steps.
 
 * Developer note: Android Studio `Instant Run` is not supported at this time and must be disabled.
 
-### The Thunderhead Application Manifest File Permissions:
+### The Thunderhead Application Manifest file permissions
 
 Included in the Thunderhead SDK's AndroidManifest.xml are the following permissions which will be merged with your applications AndroidManifest.xml:
 ```xml
@@ -1251,7 +1252,7 @@ Once you have the `urlWithOneTid`, pass this into the method which handles the o
 
 *Note:* The above methods return `null` if the SDK is not configured or is in Admin Mode.
 
-#### Create a `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to facilitate identity transfer 
+#### Create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to facilitate identity transfer 
 
 If you have disabled automatic identity transfer, you can still create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to use in the app programmatically, by calling the `java.net.URI.createUriWithTid()` or `android.net.Uri.createUriWithTid()` Kotlin extension functions or the `One.createUriWithTid(Uri|URI)` Java method as shown below:
 
@@ -1460,7 +1461,7 @@ Do not forget to register the customer service (if required) that calls the Thun
 </service>
 ```
 
-##### Set a non adaptive fallback.
+##### Set a non adaptive fallback
 
 Android (O)reo, Api 26, shipped with a platform bug relating to Adaptive Icons and Notifications. The bug can be seen [here](https://issuetracker.google.com/issues/68716460). 
 The issue was resolved in Api 27 however it was not back ported to the original Oreo Api 26 platform.  
@@ -1556,7 +1557,7 @@ One.getTid();
 - This will return the `tid` assigned to the current user as a `String`.
 - Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE, or Salesforce Interaction Studio, or if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
 
-### Access Debug Information
+### Access debug information
 
 The Thunderhead SDK for Android provides 4 distinct debugging levels, that can be enabled once the SDK has been initialized, as shown below:
 
