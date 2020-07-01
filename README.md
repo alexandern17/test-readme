@@ -13,16 +13,8 @@ on updating your existing SDK configuration.**
 
 ## Table of Contents
 
-* [Table of contents](#table-of-contents)
 * [Installation](#installation)
  * [Manual installation](#manual-installation)
-    * [build.gradle examples](#buildgradle-examples)
-       * [<strong>Thunderhead ONE</strong> build.gradle examples](#thunderhead-one-buildgradle-examples)
-          * [Example of the <strong>top-level</strong> build.gradle file after integration](#example-of-the-top-level-buildgradle-file-after-integration)
-          * [Example of the <strong>app-level</strong> build.gradle file after integration](#example-of-the-app-level-buildgradle-file-after-integration)
-       * [<strong>Salesforce Interaction Studio</strong> build.gradle examples](#salesforce-interaction-studio-buildgradle-examples)
-          * [Example of the <strong>top-level</strong> build.gradle file after integration](#example-of-the-top-level-buildgradle-file-after-integration-1)
-          * [Example of the <strong>app-level</strong> build.gradle file after integration](#example-of-the-app-level-buildgradle-file-after-integration-1)
 * [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
  * [The Thunderhead Application Manifest file permissions](#the-thunderhead-application-manifest-file-permissions)
  * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
@@ -46,8 +38,8 @@ on updating your existing SDK configuration.**
  * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
  * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
     * [Send deep link properties programmatically](#send-deep-link-properties-programmatically)
-    * [Create a URL with a one-tid parameter to facilitate identity transfer](#create-a-url-with-a-one-tid-parameter-to-facilitate-identity-transfer)
-    * [Create an android.net.Uri or java.net.URI with a one-tid parameter to facilitate identity transfer](#create-a-androidneturi-or-javaneturi-with-a-one-tid-parameter-to-facilitate-identity-transfer)
+    * [Create a `URL` with a `one-tid` parameter to facilitate identity transfer](#create-a-url-with-a-one-tid-parameter-to-facilitate-identity-transfer)
+    * [Create an `android.net.Uri` or `java.net.URI` with a `one-tid` parameter to facilitate identity transfer](#create-a-androidneturi-or-javaneturi-with-a-one-tid-parameter-to-facilitate-identity-transfer)
  * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     * [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
  * [Enable push notifications](#enable-push-notifications)
