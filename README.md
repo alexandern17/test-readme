@@ -29,8 +29,8 @@ on updating your existing SDK configuration.**
         * [Send an Interaction request programmatically ignoring the response](#send-an-interaction-request-programmatically-ignoring-the-response)
         * [Send an Interaction request programmatically processing the response](#send-an-interaction-request-programmatically-processing-the-response)
         * [Sending Properties](#sending-properties)
-        * [Send an Interaction request with Properties programmatically](#send-an-interaction-request-with-properties-programmatically)
-        * [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
+            * [Send an Interaction request with Properties programmatically](#send-an-interaction-request-with-properties-programmatically)
+            * [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
         * [Send a response code](#send-a-response-code)
     * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
     * [Assign an Interaction to a View](#assign-an-interaction-to-a-view)
@@ -661,7 +661,7 @@ to the SDK to process, attaching any capture, track or optimize instructions to 
 Properties in the form of key/value pair strings can be sent to Thunderhead ONE 
 or Salesforce Interaction Studio using the SDK's public methods. 
 
-#### Send an Interaction request with Properties programmatically
+##### Send an Interaction request with Properties programmatically
 
 You can send an Interaction request programmatically with Properties and ignore the response
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
@@ -728,7 +728,7 @@ final OneCall sendInteractionCall = One.sendInteraction(sendInteractionRequest);
 sendInteractionCall.enqueue(null);
 ```
 
-#### Send Properties to a base Touchpoint
+##### Send Properties to a base Touchpoint
 
 You can send Properties programmatically and ignore the response
 by calling the `oneSendProperties` Kotlin top-level function in a Coroutine as shown below:
