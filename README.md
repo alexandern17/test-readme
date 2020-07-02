@@ -1,4 +1,4 @@
-![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
+![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
 
 The Thunderhead SDK for Android supports Android 4.1+ (API 16) and Android Gradle Plugin 3.4.2+.
 
@@ -498,7 +498,7 @@ It becomes your responsibility to send them when needed by using the methods pro
 
 You can set this back to `false` at any point to restart automatic Interaction detection.
 
-## Programmatic Interactions and Properties API
+### Programmatic Interactions and Properties API
 
 You can manually send Interaction Requests and Properties to ONE or Interaction Studio by using 
 the `oneSendInteraction` Kotlin top-level function or the `One.sendInteraction` Java method.
@@ -506,7 +506,7 @@ the `oneSendInteraction` Kotlin top-level function or the `One.sendInteraction` 
 The `oneSendInteraction` Kotlin top-level function uses Kotlin [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
 while the `One.sendInteraction` Java method follows a Call/Request/Response model similar to [Retrofit](https://square.github.io/retrofit/).
 
-### Send an Interaction request programmatically ignoring the response
+#### Send an Interaction request programmatically ignoring the response
 
 You can send an Interaction request programmatically and ignore the response 
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
@@ -569,7 +569,7 @@ sendInteractionCall.enqueue(null);
 will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
 
-### Send an Interaction request programmatically processing the response
+#### Send an Interaction request programmatically processing the response
 
 You can send an Interaction request programmatically and process the response
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
@@ -656,12 +656,12 @@ to the SDK to process, attaching any capture, track or optimize instructions to 
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
 
-### Sending Properties
+#### Sending Properties
 
 Properties in the form of key/value pair strings can be sent to Thunderhead ONE 
 or Salesforce Interaction Studio using the SDK's public methods. 
 
-### Send an Interaction request with Properties programmatically
+#### Send an Interaction request with Properties programmatically
 
 You can send an Interaction request programmatically with Properties and ignore the response
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
