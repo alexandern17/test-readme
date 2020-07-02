@@ -26,10 +26,11 @@ on updating your existing SDK configuration.**
     * [Exclude an Interaction](#exclude-an-interaction)
     * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
     * [Programmatic Interactions and Properties API](#programmatic-interactions-and-properties-api)
-        * [Send an Interaction request programmatically ignoring the response](#send-an-interaction-request-programmatically-ignoring-the-response)
-        * [Send an Interaction request programmatically processing the response](#send-an-interaction-request-programmatically-processing-the-response)
-        * [Sending Properties](#sending-properties)
-            * [Send an Interaction request with Properties programmatically](#send-an-interaction-request-with-properties-programmatically)
+        * [Send Interactions](#send-interactions)
+            * [Send an Interaction request](#send-an-interaction-request)
+            * [Send an Interaction request processing the response](#send-an-interaction-request-processing-the-response)
+        * [Send Properties](#send-properties)
+            * [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
             * [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
         * [Send a response code](#send-a-response-code)
     * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
@@ -506,10 +507,11 @@ the `oneSendInteraction` Kotlin top-level function or the `One.sendInteraction` 
 The `oneSendInteraction` Kotlin top-level function uses Kotlin [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
 while the `One.sendInteraction` Java method follows a Call/Request/Response model similar to [Retrofit](https://square.github.io/retrofit/).
 
-#### Send an Interaction request programmatically ignoring the response
+#### Send Interactions
 
-You can send an Interaction request programmatically and ignore the response 
-by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
+##### Send an Interaction request 
+
+You can send an Interaction request programmatically by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
 
 `Kotlin`
 ```kotlin
@@ -546,8 +548,7 @@ scope.launch {
 }
 ```
 
-You can send an Interaction request programmatically and ignore the response
-by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
+You can send an Interaction request programmatically by calling the `One.sendInteraction` Java method and enqueue with a `null` callback as shown below:
 
 `Java`
 ```java
@@ -569,10 +570,9 @@ sendInteractionCall.enqueue(null);
 will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
 
-#### Send an Interaction request programmatically processing the response
+##### Send an Interaction request processing the response
 
-You can send an Interaction request programmatically and process the response
-by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
+You can send an Interaction request programmatically and process the response by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
 
 `Kotlin`
 ```kotlin
@@ -613,8 +613,7 @@ scope.launch {
 }
 ```
 
-You can send an Interaction request programmatically and process the response
-by calling the `One.sendInteraction` Java method and enqueue with a callback as shown below:
+You can send an Interaction request programmatically and process the response by calling the `One.sendInteraction` Java method and enqueue with a callback as shown below:
 
 `Java`
 ```java
@@ -656,12 +655,11 @@ to the SDK to process, attaching any capture, track or optimize instructions to 
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers, and/or dashes.
 
-#### Sending Properties
+#### Send Properties
 
-Properties in the form of key/value pair strings can be sent to Thunderhead ONE 
-or Salesforce Interaction Studio using the SDK's public methods. 
+Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. 
 
-##### Send an Interaction request with Properties programmatically
+##### Send an Interaction request with Properties
 
 You can send an Interaction request programmatically with Properties and ignore the response
 by calling the `oneSendInteraction` Kotlin top-level function in a Coroutine as shown below:
