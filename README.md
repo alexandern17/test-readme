@@ -13,10 +13,8 @@ on updating your existing SDK configuration.**
 
 ## Table of Contents
 
-* [Table of Contents](#table-of-contents)
 * [Installation](#installation)
     * [Manual installation](#manual-installation)
-        * [build.gradle examples](#buildgradle-examples)
 * [Use the codeless Thunderhead SDK for Android](#use-the-codeless-thunderhead-sdk-for-android)
      * [The Thunderhead Application Manifest file permissions](#the-thunderhead-application-manifest-file-permissions)
      * [Configure and reconfigure the SDK](#configure-and-reconfigure-the-sdk)
