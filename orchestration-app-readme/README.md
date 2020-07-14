@@ -1,15 +1,64 @@
-![Nevercode build status](https://app.nevercode.io/api/projects/4714447b-05e5-45ff-921e-ea60c07e6ef2/workflows/b09232cf-8cac-453c-b9db-b08c7d96428e/status_badge.svg?branch=master&style=shields)
+# Identity transfer example
 
-# Optimizing Programatically Using JSON Example 
+This example app demonstrates how to use the identity transfer feature in the Thunderhead SDK.  
 
-## Installation
+### How to run
 
-This example app integrates the Thunderhead SDK using [manual installation](https://github.com/thunderheadone/one-sdk-ios#manual-installation).  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods) 
+The parameters found in the `gradle.properties` file is used as configuration parameters for the Thunderhead SDK, which is configured in [ExampleApplication.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/ExampleApplication.kt).
 
-## Questions or need help
+* Clone this repo or download the source directly.
+* Update configuration values in `gradle.properties` with your Thunderhead credentials:
+```java
+thunderheadAdminMode=false
+thunderheadUser="user@tenant"
+thunderheadApiKey="my-key"
+thunderheadSharedSecret="my-secret"
+thunderheadSiteKey="my-site-key"
+thunderheadTouchpoint="android://thunderheadDemo"
+thunderheadHost="https://xx.thunderhead.com"
+```
+* Open project in Android Studio
+* Clean and Build the Project
+* Play the "App" on an emulator
 
-### Salesforce Interaction Studio Support
-_For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
+App Flow Summary:
+1. On initial app start, [MainActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/MainActivity.kt) is presented. 
+2. Enter the `URL` of your choice in the `TextView`, the default is https://www.thunderhead.com.
+3. Press the `Transfer Identity To Web`  button.
 
-### Thunderhead ONE Support
-_The Thunderhead team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
+This opens the entered `URL` in the mobile browser and the `URL` will have an appended query parameter of `one-tid=<GUID>` which transfers the users identity to the consuming website.
+
+### How to migrate from 5.* to 6.*
+
+Version 6.* of the Thunderhead SDK introduced static methods and Kotlin top-level extension functions.
+Please see below to see how to migrate the SDK methods used in this example app from 5.* to 6.*.
+
+```kotlin
+ // Old 
+
+ One.getInstance(this)?.run {
+	init(
+		BuildConfig.thunderheadSiteKey,
+		BuildConfig.thunderheadTouchpoint,
+		BuildConfig.thunderheadApiKey,
+		BuildConfig.thunderheadSharedSecret,
+		BuildConfig.thunderheadUser,
+		BuildConfig.thunderheadHost,
+		if(BuildConfig.thunderheadAdminMode) OneModes.ADMIN_MODE else OneModes.USER_MODE
+	)
+}
+```
+
+```kotlin
+ // New 
+
+oneConfigure {
+	siteKey = BuildConfig.thunderheadSiteKey
+	apiKey = BuildConfig.thunderheadApiKey
+	sharedSecret = BuildConfig.thunderheadSharedSecret
+	userId = BuildConfig.thunderheadUser
+	host = URI(BuildConfig.thunderheadHost)
+	touchpoint = URI(BuildConfig.thunderheadTouchpoint)
+	mode = if(BuildConfig.thunderheadAdminMode) OneModes.ADMIN_MODE else OneModes.USER_MODE
+}
+```
