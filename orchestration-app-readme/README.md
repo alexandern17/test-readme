@@ -1,6 +1,7 @@
 # Orchestration optimization example
 
-This example app demonstrates how to use the ochestration optimization feature in the Thunderhead SDK.
+This example app demonstrates how to use the orchestration optimization feature in the Thunderhead SDK.
+
 For the tutorial to set up this example app, see [here](https://na5.thunderhead.com/one/help/conversations/how-do-i/mobile/android-orchestrations/one_integrate_mobile_android_orch_intro/).
 
 ## How to run
@@ -36,9 +37,7 @@ The app is a simple `TabView` based app with 2 fragment screens:
 ## Migrating from versions < 6.0.0
 
 Version 6.0.0 of the Thunderhead SDK introduced static methods and Kotlin top-level extension functions.
-Please see below to see how to migrate the SDK methods used in this example app from < 6.0.0.  
-
-### Configuring the SDK
+Please see below to see how to migrate the SDK methods used in this example app from < 6.0.0.
 
 ```kotlin
  // Old 
@@ -69,3 +68,13 @@ oneConfigure {
 	mode = if(BuildConfig.thunderheadAdminMode) OneModes.ADMIN_MODE else OneModes.USER_MODE
 }
 ```
+
+## Questions or need help
+Public documentation on the SDK can be found [here](https://github.com/thunderheadone/one-sdk-android)
+To see what's available, every API is exposed in the `com.thunderhead.android.api` package.  Check that package source for guidance.
+
+### Salesforce Interaction Studio Support
+_For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
+
+### Thunderhead ONE Support
+_The Thunderhead team is available 24/7 to answer any questions you have. Just email [onesupport@thunderhead.com](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._
