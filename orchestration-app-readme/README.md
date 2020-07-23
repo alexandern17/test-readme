@@ -3,7 +3,7 @@
 This example app demonstrates how to use the ochestration optimization feature in the Thunderhead SDK.
 For the tutorial to set up this example app, see [here](https://na5.thunderhead.com/one/help/conversations/how-do-i/mobile/android-orchestrations/one_integrate_mobile_android_orch_intro/).
 
-### How to run
+## How to run
 
 The parameters found in the `gradle.properties` file is used as configuration parameters for the Thunderhead SDK, which is configured in [OptimizationApp.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/optimizing-programmatically-using-json-example/app/src/main/java/com/thunderhead/optimizationexample/OptimizationApp.kt).
 
@@ -22,7 +22,7 @@ thunderheadHost="https://xx.thunderhead.com"
 * Clean and Build the Project
 * Play the "App" on an emulator
 
-### App Flow Summary
+## App Flow Summary
 
 The app is a simple `TabView` based app with 2 fragment screens:
 
@@ -33,12 +33,12 @@ The app is a simple `TabView` based app with 2 fragment screens:
  * [SecondFragment](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/optimizing-programmatically-using-json-example/app/src/main/java/com/thunderhead/optimizationexample/MainActivity.kt#L222)
  	* Contains a simple set of buttons which will help us record the app user interest similar to how this could be achieved in your app.
 
-### Migrating from versions < 6.0.0
+## Migrating from versions < 6.0.0
 
 Version 6.0.0 of the Thunderhead SDK introduced static methods and Kotlin top-level extension functions.
 Please see below to see how to migrate the SDK methods used in this example app from < 6.0.0.  
 
-#### Configuring the SDK
+### Configuring the SDK
 
 ```kotlin
  // Old 
