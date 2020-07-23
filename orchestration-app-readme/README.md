@@ -24,8 +24,8 @@ thunderheadHost="https://xx.thunderhead.com"
 ## App Flow Summary
 
 [MainActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/identity-transfer-example/app/src/main/java/com/thunderhead/identitytransferexample/MainActivity.kt)
-	* Enter the `URL` of your choice in the `TextView`, the default is https://www.thunderhead.com.
-	* Press the `Transfer Identity To Web`  button.
+ * Enter the `URL` of your choice in the `TextView`, the default is https://www.thunderhead.com.
+ * Press the `Transfer Identity To Web`  button.
 
 This opens the entered `URL` in the mobile browser and the `URL` will have an appended query parameter of `one-tid=<GUID>` which transfers the users identity to the consuming website.
 
