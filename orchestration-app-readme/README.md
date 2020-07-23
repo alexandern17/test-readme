@@ -7,9 +7,9 @@ This example app demonstrates how to dynamically configure the Thunderhead SDK.
 ## App Flow Summary
 
  * [MainActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/MainActivity.kt) is presented with no region selected/configured.
-        * The 'SELECT' button presents [ChangeRegionActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/ChangeRegionActivity.kt), which displays a list of regions to select from.
+  * The 'SELECT' button presents [ChangeRegionActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/ChangeRegionActivity.kt), which displays a list of regions to select from.
 * [ChangeRegionActivity.kt](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/ChangeRegionActivity.kt)
-        * Upon selection of a new region, the SDK is *reconfigured* with new API credentials corresponding to the region selected, handled in the [`onActivityResult`](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/MainActivity.kt#L57) method.
+  * Upon selection of a new region, the SDK is *reconfigured* with new API credentials corresponding to the region selected, handled in the [`onActivityResult`](https://github.com/thunderheadone/one-sdk-android/blob/master/examples/dynamic-configuration-example/app/src/main/java/com/thunderhead/dynamicconfigurationexample/MainActivity.kt#L57) method.
 
 ## SDK initialization not required
 
