@@ -432,6 +432,8 @@ An example of a service extending `FirebaseMessagingService` that calls the SDK 
 
 `Kotlin`
 ```kotlin
+// Kotlin
+
 class FirebaseService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
