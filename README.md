@@ -414,12 +414,13 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 
 When the Thunderhead SDK is the *only* push message provider in your application and you enable codeless push notification support, the SDK automatically gets the push token and handles the receiving of push notifications on behalf of your app, and therefore the below additional configuration instructions would not be needed.
 
-When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required to ensure push messaging continues to work for all SDKs using FCM.
+When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required to ensure push messaging continues to work for all SDKs using FCM even if Thunderhead push notifications is not enabled.
 
 You must forward the `onNewToken` and `onMessageReceived` callbacks to *all* SDK message APIs from the service that extends `FirebaseMessagingService`.
 
 If using the Thunderhead SDK for push messaging, forward the callbacks as shown below:
-```java
+
+```kotlin
 // Call when a new FCM token is retrieved:
 One.setMessagingToken(newToken);
 
@@ -429,6 +430,37 @@ One.processMessage(message);
 
 An example of a service extending `FirebaseMessagingService` that calls the SDK messaging APIs:
 
+`Kotlin`
+```kotlin
+class FirebaseService : FirebaseMessagingService() {
+
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
+        try {
+            One.processMessage(remoteMessage)
+            // Call other Push Message SDKS.
+        } catch (e: Exception) {
+            Log.e(TAG, e.message)
+        }
+    }
+
+    override fun onNewToken(newToken: String) {
+        super.onNewToken(newToken)
+        try {
+            One.setMessagingToken(newToken)
+            // Call other Push Message SDKS.
+        } catch (e: Exception) {
+            Log.e(TAG, e.message)
+        }
+    }
+
+    companion object {
+        private const val TAG = "FirebaseService"
+    }
+}
+```
+
+`Java`
 ```java
 public final class FirebaseService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseService";
