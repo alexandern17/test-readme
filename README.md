@@ -16,7 +16,6 @@
     + [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
     + [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
     + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
-    + [Sending codeless Interactions based on the list of Interactions created under a Touchpoint](#sending-codeless-Interactions-based-on-the-list-of-Interactions-created-under-a-touchpoint)
 - [Additional features](#additional-features)
   * [Opt an end-user out of or into tracking](#opt-an-end-user-out-of-or-into-tracking)
     * [Opt an end-user out/in of all tracking](#opt-an-end-user-outin-of-all-tracking)
@@ -263,14 +262,6 @@ The framework listens to a number of UIViewController and UIView methods to prov
 - `didMoveToWindow`
 
 If you use these methods in your code, please ensure to call super when implementing them.
-
-#### Sending codeless Interactions based on the list of Interactions created under a Touchpoint
-
-In order to reduce the number of unnecessary (and undesired) Interaction requests, only codeless Interactions that exist in the Interaction map created under a Touchpoint are being sent to Thunderhead ONE or Salesforce Interaction Studio.
-
-*Note:*
-- Codeless Interactions will only be sent if they have been created under a Touchpoint and/or if they match wildcard rules defined under a Touchpoint.
-- Only Interactions that have at least one attribute, activity or optimization point will be added to codeless Interaction map including `one-appInstall`, `one-appReinstall`, a base (`/`) or wildcard (`/*`) Interactions.
 
 **You have now successfully integrated the codeless Thunderhead SDK for iOS.**
 
@@ -534,12 +525,12 @@ You can send an Interaction request programmatically by calling the `sendInterac
 
 Swift:
 ```swift
-One.sendInteraction("/InteractionPath")
+One.sendInteraction("/interactionPath")
 ```
 
 Objective-C:
 ```objective-c
-[One sendInteraction:@"/InteractionPath"];
+[One sendInteraction:@"/interactionPath"];
 ```
 
 *Note:*
@@ -552,7 +543,7 @@ You can send an Interaction request programmatically and retrieve its response b
 
 Swift:
 ```swift
-One.sendInteraction("/InteractionPath") { (response, error) -> Void in
+One.sendInteraction("/interactionPath") { (response, error) -> Void in
     if (error == nil) {
         if let response = response {
             One.processResponse(response)
@@ -563,7 +554,7 @@ One.sendInteraction("/InteractionPath") { (response, error) -> Void in
 
 Objective-C:
 ```objective-c
-[One sendInteraction:@"/InteractionPath" withBlock:^(NSDictionary *response, NSError *error) {
+[One sendInteraction:@"/interactionPath" withBlock:^(NSDictionary *response, NSError *error) {
     if (!error) {
         [One processResponse:response];
     }
@@ -581,7 +572,20 @@ You can retrieve a response for a specific automatically triggered Interaction r
 
 If your object is an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
 
-1. Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
+1. If automatic Interaction detection is enabled, skip to step 2.  If disabled, set a value to the `oneInteractionPath` property of your object. It is recommended to do this in `viewDidLoad`, and must be set before setting the delegate in step 2.
+
+    Swift:
+    ```swift
+    self.oneInteractionPath = "/interactionPath";
+    ```
+
+
+    Objective-C:
+    ```objective-c
+    self.oneInteractionPath = @"/interactionPath";
+    ```
+
+2. Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
 
     Swift:
     ```swift
@@ -593,11 +597,12 @@ If your object is an instance of `UIViewController` class, perform the next step
     ```objective-c
     [One addInteractionResponseDelegate:<your-object>];
     ```
-
+    See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L37).
+    
 *Note:*
 - The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
 
-2. Make your object conform to the protocol `OneInteractionResponseDelegate`:
+3. Make your object conform to the protocol `OneInteractionResponseDelegate`:
 
     Swift:
     ```swift
@@ -609,21 +614,9 @@ If your object is an instance of `UIViewController` class, perform the next step
     ```objective-c
     @interface MyViewController() <OneInteractionResponseDelegate>
     ```
+    See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L15).
 
-3. If the automatic Interaction detection is switched off, set a value to oneInteractionPath property of your object:
-
-    Swift:
-    ```swift
-    self.oneInteractionPath = "/InteractionPath";
-    ```
-
-
-    Objective-C:
-    ```objective-c
-    self.oneInteractionPath = @"/InteractionPath";
-    ```
-
-4.    Implement a protocol’s required method as shown below:
+4. Implement the protocol’s required method as shown below:
 
     Swift:
     ```swift
@@ -648,7 +641,9 @@ If your object is an instance of `UIViewController` class, perform the next step
     }
     ```
 
-The method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
+The method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. 
+
+See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L43).
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
@@ -667,7 +662,7 @@ The method returns an Interaction path and a corresponding Interaction response.
 
 If your object is not an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
 
-1.    Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
+1. Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
 
     Swift:
     ```swift
@@ -701,7 +696,7 @@ If your object is not an instance of `UIViewController` class, perform the next 
     Swift:
     ```swift
     class YourObject: YourObjectClass, OneInteractionResponseDelegate {
-        var oneInteractionPath: String! = "/InteractionPath"
+        var oneInteractionPath: String! = "/interactionPath"
         ...
     }
     ```
@@ -709,10 +704,10 @@ If your object is not an instance of `UIViewController` class, perform the next 
 
     Objective-C:
     ```objective-c
-    <your-object>.oneInteractionPath = @"/InteractionPath";
+    <your-object>.oneInteractionPath = @"/interactionPath";
     ```
 
-4.    Implement a protocol’s required method as shown below:
+4. Implement a protocol’s required method as shown below:
 
     Swift:
     ```swift
