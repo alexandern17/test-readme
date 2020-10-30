@@ -552,7 +552,7 @@ You can send an Interaction request programmatically and retrieve its response b
 
 Swift:
 ```swift
-One.sendInteraction("/interactionPath") { (response, error) -> Void in
+One.sendInteraction("/InteractionPath") { (response, error) -> Void in
     if (error == nil) {
         if let response = response {
             One.processResponse(response)
@@ -563,7 +563,7 @@ One.sendInteraction("/interactionPath") { (response, error) -> Void in
 
 Objective-C:
 ```objective-c
-[One sendInteraction:@"/interactionPath" withBlock:^(NSDictionary *response, NSError *error) {
+[One sendInteraction:@"/InteractionPath" withBlock:^(NSDictionary *response, NSError *error) {
     if (!error) {
         [One processResponse:response];
     }
@@ -605,6 +605,7 @@ This functionality will not work if [automatic Interaction detection is disabled
       override func viewDidLoad() {
         super.viewDidLoad()
         self.oneInteractionPath = "/InteractionPath"
+        One.addInteractionResponseDelegate(self)
       }
       ```
 
@@ -613,6 +614,7 @@ This functionality will not work if [automatic Interaction detection is disabled
       - (void)viewDidLoad {
         [super viewDidLoad];
         self.oneInteractionPath = @"/InteractionPath"
+        [One addInteractionResponseDelegate:self];
       }
       ```
 
@@ -623,7 +625,7 @@ This functionality will not work if [automatic Interaction detection is disabled
       Swift:
       ```swift
       class YourObject: YourObjectClass, OneInteractionResponseDelegate {
-        var oneInteractionPath: String! = "/interactionPath"
+        var oneInteractionPath: String! = "/InteractionPath"
         ...
 
         func configureOneInteractionResponseDelegate() {
@@ -638,7 +640,7 @@ This functionality will not work if [automatic Interaction detection is disabled
       @synthesize oneInteractionPath;
 
       - (void)configureOneInteractionResponseDelegate {
-        self.oneInteractionPath = @"/interactionPath";  
+        self.oneInteractionPath = @"/InteractionPath";  
         [One addInteractionResponseDelegate:self];
       }
       ```
@@ -727,13 +729,13 @@ To send Properties to a specific Interaction, call the following public method, 
 
 Swift:
 ```swift
-One.sendProperties(myProperties, forInteractionPath:"/interactionPath")
+One.sendProperties(myProperties, forInteractionPath:"/InteractionPath")
 ```
 
 
 Objective-C:
 ```objective-c
-[One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
+[One sendProperties:myProperties forInteractionPath:@"/InteractionPath"];
 ```
 
 *Note:*
@@ -746,13 +748,13 @@ You can send an Interaction request with Interaction Properties by calling the m
 
 Swift:
 ```swift
-One.sendInteraction("/interactionPath", withProperties:myProperties)
+One.sendInteraction("/InteractionPath", withProperties:myProperties)
 ```
 
 
 Objective-C:
 ```objective-c
-[One sendInteraction:@"/interactionPath" withProperties:myProperties];
+[One sendInteraction:@"/InteractionPath" withProperties:myProperties];
 ```
 
 *Note:*
@@ -766,7 +768,7 @@ You can send an Interaction request with Properties and retrieve its response by
 
 Swift:
 ```swift
-One.sendInteraction("/interactionPath", withProperties:myProperties) {
+One.sendInteraction("/InteractionPath", withProperties:myProperties) {
     (response, error) in
         if (error == nil) {
             if let response = response {
@@ -779,7 +781,7 @@ One.sendInteraction("/interactionPath", withProperties:myProperties) {
 
 Objective-C:
 ```objective-c
-[One sendInteraction:@"/interactionPath" withProperties:myProperties andBlock:^(NSDictionary *response, NSError *error) {
+[One sendInteraction:@"/InteractionPath" withProperties:myProperties andBlock:^(NSDictionary *response, NSError *error) {
     if (!error) {
         [One processResponse:response];
     }
@@ -804,7 +806,7 @@ One.sendResponseCode("yourCode", forInteractionPath:"/InteractionPath")
 
 Objective-C:
 ```objective-c
-[One sendResponseCode:@"yourCode" forInteractionPath:@"/interactionPath"];
+[One sendResponseCode:@"yourCode" forInteractionPath:@"/InteractionPath"];
 ```
 
 *Note:*
