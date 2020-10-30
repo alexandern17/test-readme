@@ -585,7 +585,7 @@ This functionality will not work if [automatic Interaction detection is disabled
 
     Swift:
     ```swift
-    class MyViewController: UIViewController, OneInteractionResponseDelegate
+    class MyViewController: UIViewController, OneInteractionResponseDelegate 
     ```
 
     Objective-C:
@@ -594,7 +594,7 @@ This functionality will not work if [automatic Interaction detection is disabled
     ```
     See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L15).
 
-2. Set the `oneInteractionPath` value to the name of the Interaction you want to retrieve the response from.     
+2. Set the `oneInteractionPath` value to the name of the Interaction you want to retrieve the response from, and assign the delegate.     
 
     * For `UIViewController` classes:
 
@@ -625,6 +625,10 @@ This functionality will not work if [automatic Interaction detection is disabled
       class YourObject: YourObjectClass, OneInteractionResponseDelegate {
         var oneInteractionPath: String! = "/interactionPath"
         ...
+
+        func configureOneInteractionResponseDelegate() {
+            One.addInteractionResponseDelegate(self)
+        }
       }
       ```
 
@@ -633,21 +637,13 @@ This functionality will not work if [automatic Interaction detection is disabled
       @implementation YourObjectClass
       @synthesize oneInteractionPath;
 
-      self.oneInteractionPath = @"/interactionPath";
+      - (void)configureOneInteractionResponseDelegate {
+        self.oneInteractionPath = @"/interactionPath";  
+        [One addInteractionResponseDelegate:self];
+      }
       ```
 
-3. Assign the delegate to the class you want to receive the response with the `addInteractionResponseDelegate` method, as shown below:
-
-    Swift:
-    ```swift
-    One.addInteractionResponseDelegate(<your-object-class>)
-    ```
-
-    Objective-C:
-    ```objective-c
-    [One addInteractionResponseDelegate:<your-object-class>];
-    ```
-    See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L37).
+      See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L37).
 
 *Note:*
 - The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
@@ -669,7 +665,7 @@ This functionality will not work if [automatic Interaction detection is disabled
     ```objective-c
     - (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
         if (response) {
-            // Do something with the response.
+            // Work with the response.
             // Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
             [One processResponse:response];
         }
