@@ -617,6 +617,7 @@ This functionality will not work if [automatic Interaction detection is disabled
       ```
 
     * For custom classes:
+      
       Declare the required `oneInteractionPath` string property and set its value to the name of the Interaction.
         
       Swift:
