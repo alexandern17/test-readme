@@ -582,6 +582,7 @@ You can retrieve a response for a specific automatically triggered Interaction r
 This functionality will not work if [automatic Interaction detection is disabled](https://github.com/thunderheadone/one-sdk-ios#disable-automatic-interaction-detection).  For retrieving the response in sending programmatic Interactions, see [Send an Interaction request and retrieve the response](https://github.com/thunderheadone/one-sdk-ios#send-an-interaction-request-and-retrieve-the-response).
 
 1. Adopt the `OneInteractionResponseDelegate` protocol in the class definition:
+
     Swift:
     ```swift
     class MyViewController: UIViewController, OneInteractionResponseDelegate
@@ -594,6 +595,7 @@ This functionality will not work if [automatic Interaction detection is disabled
     See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L15).
 
 2. Set the `oneInteractionPath` value to the name of the Interaction you want to retrieve the response from.     
+
   * For `UIViewController` classes:
     Access the existing `oneInteractionPath` property and set its value to the name of the Interaction in `viewDidLoad`.
 
@@ -649,6 +651,7 @@ This functionality will not work if [automatic Interaction detection is disabled
 - The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
 
 4. Implement the protocol’s required method:
+
     Swift:
     ```swift
     func interaction(_ interactionPath: String!, didReceiveResponse response: [AnyHashable : Any]!) {
