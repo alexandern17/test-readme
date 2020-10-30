@@ -596,43 +596,43 @@ This functionality will not work if [automatic Interaction detection is disabled
 
 2. Set the `oneInteractionPath` value to the name of the Interaction you want to retrieve the response from.     
 
-  * For `UIViewController` classes:
-    Access the existing `oneInteractionPath` property and set its value to the name of the Interaction in `viewDidLoad`.
+    * For `UIViewController` classes:
+      Access the existing `oneInteractionPath` property and set its value to the name of the Interaction in `viewDidLoad`.
 
-    Swift:
-    ```swift
-    override func viewDidLoad() {
-      super.viewDidLoad()
-      self.oneInteractionPath = "/InteractionPath"
-    }
-    ```
+      Swift:
+      ```swift
+      override func viewDidLoad() {
+        super.viewDidLoad()
+        self.oneInteractionPath = "/InteractionPath"
+      }
+      ```
 
-    Objective-C:
-    ```objective-c
-    - (void)viewDidLoad {
-      [super viewDidLoad];
-      self.oneInteractionPath = @"/InteractionPath"
-    }
-    ```
+      Objective-C:
+      ```objective-c
+      - (void)viewDidLoad {
+        [super viewDidLoad];
+        self.oneInteractionPath = @"/InteractionPath"
+      }
+      ```
 
-  * For custom classes:
-    Declare the required `oneInteractionPath` string property and set its value to the name of the Interaction.
-      
-    Swift:
-    ```swift
-    class YourObject: YourObjectClass, OneInteractionResponseDelegate {
-      var oneInteractionPath: String! = "/interactionPath"
-      ...
-    }
-    ```
+    * For custom classes:
+      Declare the required `oneInteractionPath` string property and set its value to the name of the Interaction.
+        
+      Swift:
+      ```swift
+      class YourObject: YourObjectClass, OneInteractionResponseDelegate {
+        var oneInteractionPath: String! = "/interactionPath"
+        ...
+      }
+      ```
 
-    Objective-C:
-    ```objective-c
-    @implementation YourObjectClass
-    @synthesize oneInteractionPath;
+      Objective-C:
+      ```objective-c
+      @implementation YourObjectClass
+      @synthesize oneInteractionPath;
 
-    self.oneInteractionPath = @"/interactionPath";
-    ```
+      self.oneInteractionPath = @"/interactionPath";
+      ```
 
 3. Assign the delegate to the class you want to receive the response with the `addInteractionResponseDelegate` method, as shown below:
 
