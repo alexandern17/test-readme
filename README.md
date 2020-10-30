@@ -647,8 +647,8 @@ This functionality will not work if [automatic Interaction detection is disabled
 
       See example of usage [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L37).
 
-*Note:*
-- The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
+      *Note:*
+      - The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
 
 4. Implement the protocol’s required method:
 
